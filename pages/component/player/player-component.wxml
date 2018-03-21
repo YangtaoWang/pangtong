@@ -1,0 +1,12 @@
+<view class='com-wrap {{!isShow ? "active" : ""}}' bindtap='toPlayer' data-id='0'>
+  <view class='com-inner'>
+    <image class='com-pic' src='../../images/test3.jpg' mode='aspectFill'></image>
+    <view class='com-intro'>
+      <text class='com-title'>2.如何打造顶级产品体验</text>
+      <text class='com-info'>{{duration}} | 6704次学习</text>
+    </view>
+    <image class='com-up' src="../../images/com-up.png"></image>
+    <image class='com-play' src="../../images/com-play.png" catchtap='playbgm' wx:if="{{!controlShow }}"></image>
+    <image class='com-pause' src="../../images/com-stop.png" catchtap='pausebgm' wx:if="{{ controlShow }}"></image>
+  </view>
+</view>

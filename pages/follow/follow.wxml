@@ -1,0 +1,106 @@
+<scroll-view class='bodywrap'>
+  <view class='nonePic' wx:if="{{showFlag}}">
+      <image src='../../images/none.png'></image>
+      <view class='nomore'>还没有关注更多哦</view>
+      <view class='toFollow' bindtap="toIndex"><text>前往关注</text></view>
+  </view>
+  <view class='follow-list' wx:for="{{followItem}}" wx:key catchtap='toCourse' data-id="{{item}}">
+    <view class='cart'>
+      <image class='cart-image' src='../../images/test2.jpg' mode='aspectFill'>
+      </image>
+      <view class='cart-right'>
+        <view class='cart-name'>
+          <view class='name-right'>
+            <image class='name-pic' src="../../images/follow-test2.jpg"></image>
+            <view>
+              <view class='name-name'>木林于杰</view>
+              <view class='update'>刚刚更新</view>
+            </view>
+          </view>
+          <image class='follow-heart' src='../../images/follow.png' catchtap='cancelFollow' data-titleid= "{{item.id}}" data-show="{{index}}" wx:if="{{item.show === 1 ? !showHeart : showHeart}}"></image>
+           <image class='nofollow-heart' src='../../images/nofollow-heart.png' catchtap='addFollow' data-titleid= "{{item.id}}" data-show='{{index}}' wx:if="{{item.show === 1 ? showHeart : !showHeart}}"></image> 
+        </view>
+        <text class='cart-title'>{{item.title}}</text>
+        <view class='cart-text'> 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在</view>
+        <view class='cart-buttons'>
+            <image class='text-icon'src="../../images/follow-text.png" catchtap='toText'></image>
+            <image class='play-icon'src="../../images/follow-play.png" catchtap='toPlayer' data-id="{{item}}"></image>
+           
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='follow-list'>
+    <view class='cart'>
+      <image class='cart-image'src='../../images/follow-test.jpg' bindtap='toCourse'>
+      </image>
+      <view class='cart-right'>
+        <view class='cart-name'>
+          <view class='name-right'>
+            <image class='name-pic' src="../../images/follow-test2.jpg" bindtap='toCourse'></image>
+            <view bindtap='toCourse'>
+              <view class='name-name'>阿娜小林哥</view>
+              <view class='update'>刚刚更新</view>
+            </view>
+          </view>
+          <image class='follow-heart' src='../../images/follow-heart.png'></image>
+        </view>
+        <text class='cart-title' bindtap='toCourse'>雾霾致癌研究</text>
+        <view class='cart-text' bindtap='toCourse'> 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在</view>
+       <view class='cart-buttons'>
+            <image class='text-icon'src="../../images/follow-text.png"></image>
+            <image class='play-icon'src="../../images/follow-play.png" bindtap='toPlayer'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='follow-list'>
+    <view class='cart'>
+      <image class='cart-image' src='../../images/follow-test.jpg'>
+      </image>
+      <view class='cart-right'>
+        <view class='cart-name'>
+          <view class='name-right'>
+            <image class='name-pic' src="../../images/follow-test2.jpg"></image>
+            <view>
+              <view class='name-name'>肯尼迪</view>
+              <view class='update'>刚刚更新</view>
+            </view>
+          </view>
+          <image class='follow-heart' src='../../images/follow-heart.png'></image>
+        </view>
+        <text class='cart-title'>幽默的本质</text>
+        <view class='cart-text'> 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在</view>
+       <view class='cart-buttons'>
+            <image class='text-icon'src="../../images/follow-text.png"></image>
+            <image class='play-icon'src="../../images/follow-play.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='follow-list'>
+    <view class='cart'>
+      <image class='cart-image' src='../../images/follow-test.jpg'>
+      </image>
+      <view class='cart-right'>
+        <view class='cart-name'>
+          <view class='name-right'>
+            <image class='name-pic' src="../../images/follow-test2.jpg"></image>
+            <view>
+              <view class='name-name'>木林于杰</view>
+              <view class='update'>刚刚更新</view>
+            </view>
+          </view>
+          <image class='follow-heart' src='../../images/follow-heart.png'></image>
+        </view>
+        <text class='cart-title'>心理学：人的身体入侵大脑</text>
+        <view class='cart-text'> 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在</view>
+        <view class='cart-buttons'>
+            <image class='text-icon'src="../../images/follow-text.png"></image>
+            <image class='play-icon'src="../../images/follow-play.png"></image>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <include src="../component/player/player-component.wxml" />
+</scroll-view>

@@ -1,0 +1,226 @@
+/* pages/course/course.wxss */
+/*详情页面的高度不一样，组件的样式需要在本页面单独设置  */
+.com-wrap{
+  bottom: 110rpx;
+}
+.active{
+  bottom: -100rpx;
+}
+/*以上为性设置的样式  */
+.course-top{
+  height: 300rpx;
+  overflow-x: hidden;
+}
+.halfred{
+  background-color:#ee4a47;
+  width:100%;
+  height:471rpx;
+  border-radius:130rpx;
+  position:absolute;
+  top:-259rpx;
+}
+.course-cart{
+  position:absolute;
+  margin: 18rpx 30rpx 0 30rpx;
+  height: 260rpx;
+  background-color:#ffffff; 
+  border-radius:20rpx;
+  top: 18rpx;
+  display: flex;
+  justify-content:space-between;
+  box-shadow: 0px 0rpx 10rpx 0rpx #999;
+}
+
+.course-teacher{
+  width: 160rpx;
+  height: 220rpx;
+  margin: 20rpx 0 20rpx 32rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid #ffffff;
+  box-shadow: 0px 0rpx 10rpx 0rpx #999;
+}
+.cart-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width:60%;
+  margin-right: 35rpx;
+}
+.teacher-name{
+  font-size: 32rpx;
+  margin-left: 45rpx;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+.title-wrap, .intro-wrap{
+  display: flex;
+}
+.intro-wrap{
+  margin-bottom: 50rpx;
+}
+.teacher-title, .teacher-intro{
+  width: 28rpx;
+  height: 28rpx;
+  flex-shrink: 0;
+  margin-right: 15rpx;
+}
+.teacher-title-text, .teacher-inro-text{
+  font-size: 20rpx;
+  color: #707070;
+}
+.teacher-inro-text{
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.point-wrap{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40rpx;
+  color: #c4c4c4;
+}
+.point-wrap text{
+  position: relative;
+  top: -10rpx;
+}
+.course-title{
+  margin: 20rpx 0 20rpx 0;
+}
+.course-title image{
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 30rpx;
+  vertical-align: middle;
+}
+.course-title text{
+  font-size: 30rpx;
+}
+ .course-title text{
+  vertical-align: middle;
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+.course-title .course-count{
+  font-size: 20rpx;
+  color: #707070;
+  vertical-align: middle;
+}
+.course-list{
+  border-top: 2rpx solid #e5e5e5;
+}
+.list-wrap{
+  margin: 24rpx 52rpx 18rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.control-btn{
+  width: 56rpx;
+  height: 56rpx;
+}
+.list-inner{
+  margin-right: 250rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 0;
+}
+.inner-title{
+  font-size: 26rpx;
+  margin-bottom: 10rpx; 
+}
+.coursr-count, .course-time{
+  width: 16rpx;
+  height: 20rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.list-text{
+  width: 32rpx;
+  height: 38rpx;
+  vertical-align: middle;
+}
+.count-text, .time-text{
+  font-size: 18rpx;
+  color: #999999;
+  vertical-align: middle;
+  margin-right: 22rpx;
+}
+.course-finish{
+  font-size: 20rpx;
+  color: #ee4a47;
+  vertical-align: middle;
+}
+.gray-line{
+  background: #e5e5e5;
+  height: 20rpx;
+}
+.course-intro{
+  padding-bottom: 100rpx;
+}
+.intro-title{
+  border-bottom: 2rpx solid #e5e5e5;
+  padding-bottom: 18rpx;
+  margin-bottom: 0;
+}
+.intro-text{
+  padding: 12rpx 56rpx 8rpx 80rpx;
+  font-size: 22rpx;
+  line-height: 28rpx;
+}
+.course-bottom{
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  box-shadow: 0px 0rpx 20rpx 0rpx #ccc;
+}
+.free-try{
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+}
+.free-left, .follow-right{
+  width: 50%;
+}
+.free-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 2rpx solid #e5e5e5;
+  color: #4c4c4c;
+  background-color: white;
+}
+.follow-right{
+  background-color: #ee4a47;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+  border-top: 2rpx solid #d64240;
+}
+.course-loadmore{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.downopen{
+  width:20rpx;
+  height: 10rpx;
+  margin: 12rpx 0;
+  transform: rotate(0deg);
+  transition: transform .6s;
+}
+.trans{
+  transform: rotate(180deg);
+}
+.courselist-wrap{
+  /* height: 464rpx; */
+  transition: height .5s;
+}
+/* .height-active{
+  height: 928rpx;
+} */
+

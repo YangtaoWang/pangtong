@@ -1,0 +1,6 @@
+ /* text{
+   font-family: PingFangSC-Medium, sans-serif;  
+}  */
+@import "pages/component/player/player-component.wxss"
+@import "pages/component/loadingError/loadingError.wxss"
+

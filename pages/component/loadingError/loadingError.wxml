@@ -1,0 +1,7 @@
+<view class='error-bodywrap' wx:if="{{showErrorComponent}}">
+  <view class='error-nonePic'>
+      <image src='../../images/error.png'></image>
+      <view class='error-nomore'>页面已经飞到火星了</view>
+      <view class='error-update'><text>点击刷新</text></view>
+  </view>
+</view>

@@ -1,0 +1,206 @@
+<view class='bodywrap'>
+  <view class='pub' bindtap='toCourse' data-id='1'>
+    <swiper autoplay="true" interval="5000" duration="300" indicator-dots="true" indicator-active-color="#ccc">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}"  class="slide-image" mode="widthFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='serie'> 
+    <view class='serie-title'>
+      <image src="../../images/index-reco.png"></image>
+      <text>推荐课程</text>
+    </view>
+    <scroll-view>
+      <view class='serie-view' wx:for="{{serieArr}}" wx:key bindtap='toCourse' data-id='{{index}}'>
+        <view class="serie-inner">
+          <view class='serie-left'>
+            <view class='serie-count'>
+              <image class='count-icon' src="../../images/index-people.png"></image>
+              <text class='counts'>3825人参与</text>
+            </view>
+            <image class='serie-teacher' src='../../images/test3.jpg' mode='aspectFill'></image>
+          </view>
+          <view class='serie-center'>
+            <text class='serie-topic'>怎么健康活到{{item}}岁</text>
+            <view class='serie-name'>
+              <image class='speaker-name-icon' src="../../images/index-name.png"></image>
+              <text class='speaker-name'>张秋丽</text>
+            </view>
+            <view>
+              <image class='speaker-title-icon' src="../../images/index-title.png"></image>
+              <text class='speaker-title'>北京协和医院医学博士</text>
+            </view>
+            <view class='time-free'><text>限时免费</text></view>
+            <view><text class='serie-time'>共124分钟 26秒/ 6节课</text></view>
+          </view>
+          <view class='serie-right'>
+            <view class='free'>
+              <text>￥99</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='hot'> 
+    <view class='serie-title'>
+      <image src="../../images/index-hot.png" mode='widthFix'></image>
+      <text>热门分类</text>
+    </view>
+    <scroll-view>
+      <view class='hot-wrap'>
+        <view class='hot-class'>
+          <view class='hot-four'>
+            <view class='pic-wrap'>
+              <image class='class-image' src="../../images/test3.jpg" mode='aspectFill'></image>
+            </view>
+            <text>职场提升</text>
+          </view>
+          <view class='hot-four'>
+            <view class='pic-wrap'>
+              <image class='class-image' src="../../images/test3.jpg" mode='aspectFill'></image>
+            </view>
+            <text>微表情心理学</text>
+          </view>
+          <view class='hot-four'>
+            <view class='pic-wrap'>
+              <image class='class-image' src="../../images/test3.jpg" mode='aspectFill'></image>
+            </view>
+            <text>工作效率</text>
+          </view>
+          <view class='hot-four'>
+            <view class='pic-wrap'>
+              <image class='class-image' src="../../images/test3.jpg" mode='aspectFill'></image>
+            </view>
+            <text>时间管理</text>
+          </view>   
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='history'> 
+    <view class='serie-title'>
+      <image src="../../images/index-history.png" mode='widthFix'></image>
+      <text>历史系列课</text>
+    </view>
+    <scroll-view>
+      <view class='history-wrap'>
+        <view class='history-inner' bindtap='toCourse' data-id='3'>
+          <view class='serie-left' >
+            <view class='serie-count'>
+              <image class='count-icon' src="../../images/index-people.png"></image>
+              <text class='counts'>3825人参与</text>
+            </view>
+            <image class='serie-teacher' src="../../images/course-test2.jpeg"></image>
+          </view>
+          <view class='history-right'>
+            <view class='history-topic'>
+              <text class='topic-title'>乔布斯的魔力演讲</text>
+              <view class='history-free'>
+                <text>￥99</text>
+              </view>
+            </view>
+            <view class='history-text'>
+                学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
+            </view>
+            <view class='time-free'><text>限时免费</text></view>
+            <view class='history-info' catchtap='toPlayer' data-id="3">
+              <text>共2节课 | 24分钟28秒</text>
+              
+              <!-- <view class='listen'> -->
+                <image src="../../images/index-play.png" class='history-play' ></image>
+                <!-- <text bindtap='addFollow' data-title='乔布斯的魔力演讲'>播放</text> -->
+              <!-- </view>  -->
+            </view> 
+          </view>
+        </view>
+      </view>
+      <view class='history-wrap'>
+        <view class='history-inner' bindtap='toCourse' data-id='4'>
+          <view class='serie-left'>
+            <view class='serie-count'>
+              <image class='count-icon' src="../../images/index-people.png"></image>
+              <text class='counts'>3825人参与</text>
+            </view>
+            <image class='serie-teacher' src="../../images/course-test2.jpeg"></image>
+          </view>
+          <view class='history-right'>
+            <view class='history-topic'>
+              <text class='topic-title'>有效管理你的健康</text>
+              <view class='history-free'>
+                <text>￥99</text>
+              </view>
+            </view>
+            <view class='history-text'>
+                学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
+            </view>
+            <view class='time-free'><text>限时免费</text></view>
+            <view class='history-info' catchtap='toPlayer' data-id="4">
+              <text>共2节课 | 24分钟28秒</text>
+              <image src="../../images/index-play.png" class='history-play' ></image>
+            </view> 
+          </view>
+        </view>
+      </view>
+      <view class='history-wrap'>
+        <view class='history-inner' bindtap='toCourse' data-id='5'>
+          <view class='serie-left'>
+            <view class='serie-count'>
+              <image class='count-icon' src="../../images/index-people.png"></image>
+              <text class='counts'>3825人参与</text>
+            </view>
+            <image class='serie-teacher' src="../../images/course-test2.jpeg"></image>
+          </view>
+          <view class='history-right'>
+            <view class='history-topic'>
+              <text class='topic-title'>怎么健康活到40岁</text>
+              <view class='history-free'>
+                <text>￥99</text>
+              </view>
+            </view>
+            <view class='history-text'>
+                学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
+            </view>
+            <view class='time-free'><text>限时免费</text></view>
+            <view class='history-info' catchtap='toPlayer' data-id="5">
+              <text>共2节课 | 24分钟28秒</text>
+              <image src="../../images/index-play.png" class='history-play' ></image>
+            </view> 
+          </view>
+        </view>
+      </view>
+      <view class='history-wrap'>
+        <view class='history-inner' bindtap='toCourse' data-id='6'>
+          <view class='serie-left'>
+            <view class='serie-count'>
+              <image class='count-icon' src="../../images/index-people.png"></image>
+              <text class='counts'>3825人参与</text>
+            </view>
+            <image class='serie-teacher'src="../../images/course-test2.jpeg"></image>
+          </view>
+          <view class='history-right'>
+            <view class='history-topic'>
+              <text class='topic-title'>心理学：人的身体入侵大脑</text>
+              <view class='history-free'>
+                <text>￥99</text>
+              </view>
+            </view>
+            <view class='history-text'>
+                学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
+            </view>
+            <view class='time-free'><text>限时免费</text></view>
+            <view class='history-info' catchtap='toPlayer' data-id="6">
+              <text>共2节课 | 24分钟28秒</text>
+              <image src="../../images/index-play.png" class='history-play' ></image>
+            </view> 
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <include src="../component/player/player-component.wxml" />
+  <include src="../component/loadingError/loadingError.wxml" />
+</view>

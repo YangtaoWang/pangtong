@@ -1,0 +1,49 @@
+.com-wrap{
+  position: fixed;
+  bottom: 10rpx;
+  width: 100%;
+  -webkit-transition: bottom .4s;
+}
+.com-inner{
+  height: 95rpx;
+  background-color: rgba(134, 134, 134, 0.9);
+  margin: 0 30rpx 0rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20rpx;
+}
+.com-pic{
+  width: 70rpx;
+  height: 85rpx;
+  border-radius: 20rpx;
+  flex: 0 0 auto;
+  margin-left: 35rpx;
+}
+.com-intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.com-title{
+  font-size: 26rpx;
+  color: white;
+}
+.com-info{
+  font-size: 18rpx;
+  color: #cacaca;
+}
+.com-up{
+  width: 31rpx;
+  height: 16rpx;
+  flex: 0 0 auto;
+}
+.com-play, .com-pause{
+  width: 62rpx;
+  height: 62rpx;
+  flex: 0 0 auto;
+  margin-right: 35rpx;
+}
+.active{
+  bottom: -100rpx;
+}

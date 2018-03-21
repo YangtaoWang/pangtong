@@ -1,0 +1,116 @@
+.bodywrap{
+  width: 100%;
+}
+.follow-list{
+  border-bottom: 2rpx solid #e3e3e3;
+}
+.cart{
+  margin: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 0rpx 10rpx 0rpx #ccc;
+  display: flex;
+  height: 300rpx;
+}
+.cart-image{
+  background-color: #ccc;
+  width: 260rpx;
+  height: 300rpx;
+  border-radius: 20rpx 0 0 20rpx;
+  display: block;
+  flex: 0 0 auto;
+}
+.cart-right{
+  padding: 20rpx 30rpx 30rpx 25rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.cart-name{
+  display: flex;
+  justify-content: space-between;
+}
+.name-right{
+  display: flex;
+  justify-content: space-between;
+}
+.name-pic{
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  box-shadow: 0px 0rpx 10rpx 0rpx #ccc;
+  background-color: #ccc;
+  margin-right: 10rpx;
+}
+.name-name{
+  font-size: 22rpx;
+}
+.update{
+  font-size: 15rpx;
+  color: #989898;
+}
+.follow-heart, .nofollow-heart{
+  margin-top: 5rpx;
+  width: 36rpx;
+  height: 32rpx;
+}
+.cart-title{
+  font-weight: bold;
+  margin: 10rpx 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 28rpx;
+}
+.cart-text{
+  font-size: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #888888;
+  line-height: 29rpx;
+}
+.cart-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18rpx;
+}
+
+.text-icon{
+  width: 106rpx;
+  height: 41rpx;
+  margin-right: 20rpx;
+  position: relative;
+  top: -2rpx;
+}
+.play-icon{
+  width: 100rpx;
+  height: 35rpx;
+  margin-right: 5rpx;
+}
+/*没有关注内容时的样式*/
+.nonePic{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 150rpx;
+}
+.nonePic image{
+  width: 274rpx;
+  height: 163rpx;
+}
+.nomore{
+  color: #f9b3b1;
+  font-size: 40rpx;
+  margin: 40rpx 0 40rpx;
+}
+.toFollow{
+  border: 2rpx solid #e96161;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  width: 120rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,33 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/follow/follow",
+    "pages/course/course",
+    "pages/player/player",
+    "pages/text/text"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#f8c2c1",
+    "selectedColor":"#ee4a47",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/follow/follow",
+        "text": "关注",
+        "iconPath": "images/follow.png",
+        "selectedIconPath": "images/follow-active.png"
+      }
+    ]
+  }
+}

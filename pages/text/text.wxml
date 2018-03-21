@@ -1,0 +1,18 @@
+<!--pages/text/text.wxml-->
+<view class='bodywrap'>
+  <view class='text-inner'>
+    <text class='text-title'>
+      如何打造顶级产品体验如何打造顶级产品体验
+    </text>
+    <view class='gray-line'></view>
+    <view class='redbtn'><text>技能功能</text></view>
+    <view class='text-content'>
+      <view class='text-view'><text decode='true'>&nbsp;&nbsp;&nbsp;&nbsp;打造一个品牌，就如同让一个出名大家都知道他，知道他的特长，在他的领域里面就联想到他，同理打造品牌就是打造个人，从它出生学会走路说话都要一路的关怀，这也就是为什么一些大品牌的企业家都把自己的品牌看着比自己都重要，品牌对于他们就是自己的儿子。</text></view>
+      <view class='text-view'><text decode='true'>&nbsp;&nbsp;&nbsp;&nbsp;打造如同让一个出名大家都知道他，知道他的特长，在他的领域里面就联想到他，同理打造品牌就是打造个人，从它出生学会走路说话都要一路的关怀，这也就是为什么一些大品牌的企业家都把自己的品牌看着比自己都重要，的儿子。</text></view>
+      <view class='text-view'><text decode='true'>&nbsp;&nbsp;&nbsp;&nbsp;打造一个品牌，就如同让一个出名大家都知道他，知道他的特长，在他的领域里面就联想到他，同理打造品牌就是打造个人，从它出生学会走路说话都要一路的关怀，这也就是为什么一些大品牌的企业家都把自己的品牌看着比自己都重要，品牌对于他们就是的儿子。</text></view>
+      <view class='text-view'><text decode='true'>&nbsp;&nbsp;&nbsp;&nbsp;打造一个品牌，就如同让一个出名大家都知道他，知道他的特长，在他的领域里面就联想到他，同理打造品牌就是打造个人，从它出生学会走路说话都要一路的关怀，这也就是为什么一些大品牌的企业家都把自己的品牌看着比自己都重要他们就是自己的儿子。</text></view>
+    </view>
+    <view class='endview'><text class='end'>已经没有更多了</text></view>
+  </view>
+  <include src="../component/player/player-component.wxml" />
+</view>

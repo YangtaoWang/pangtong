@@ -1,0 +1,185 @@
+<!--pages/course/course.wxml-->
+<view class='bodywrap'>
+  <view class='course-top'>
+     <view class='halfred'>
+    </view> 
+    <view class='course-cart'>
+    
+      <image class='course-teacher' src='../../images/test3.jpg' mode='aspectFill'></image>
+      
+      <view class='cart-right'>
+        <text class='teacher-name'>刘令涛</text>
+        <view class='title-wrap'>
+          <image class='teacher-title' src='../../images/course-name.png'></image>
+          <text class='teacher-title-text'>MBA资深专家委员会会员</text>
+        </view>
+        <view class='intro-wrap'>
+          <image class='teacher-intro' src='../../images/course-title.png'></image>
+          <text class='teacher-inro-text'>十年MBA面试福到家经验，辅助千余学员成功考取MBA学校，全国首创"MBA考生院校"</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='course'>
+    <view class='course-title'>
+      <image src='../../images/course-list.png'></image>
+      <text>课程内容</text>
+      <text class='course-count'>(共8节)</text>
+    </view>
+    <scroll-view class='courselist-wrap' style='height:{{height}}rpx' >
+    <!--{{ down ? "height-active" : ""}}  -->
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png" catchtap='toText'></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+      <view class='course-list'>
+        <view class='list-wrap'>
+          <image class='control-btn' src='../../images/course-control.png'></image>
+          <view class='list-inner'>
+              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <view>
+                <image class='coursr-count' src="../../images/course-count.png"></image>
+                <text class='count-text'>5772</text>
+                <image class='course-time' src="../../images/course-count.png"></image>
+                <text  class='time-text'>07:38</text>
+                <text class='course-finish'>已听完</text>
+              </view>
+          </view>
+          <image class='list-text' src="../../images/course-listtext.png"></image>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='course-loadmore' bindtap='open'><image class='downopen {{ !heightFlag ? "trans" : ""}}' src="../../images/course-down.png"></image></view>
+  </view>
+  <view class='gray-line'>
+  </view>
+  <view class='course-intro'>
+     <view class='course-title intro-title'>
+      <image src='../../images/course-intro.png'></image>
+      <text bindtap="testJump">课程介绍</text>
+      <text class='course-count'>(982关注)</text>
+    </view>
+    <view class='intro-text'>
+      对于考取MBA，你是否也值得这样焦虑，毕业好几年了，MBA笔试完全没有信心！别怕，把握好提前面试，MBA就能成功一半！那么如何把握好面试呢？对于考取MBA，你是否也值得这样焦虑，毕业好几年了，MBA笔试完全没有信心！别怕，把握好提前面试，MBA就能成功一半！那么如何把握好面试呢？对于考取MBA，你是否也值得这样焦虑，毕业好几年了，MBA笔试完全没有信心！别怕，把握好提前面试，MBA就能成功一半！那么如何把握好面试呢？对于考取MBA，你是否也值得这样焦虑，毕业好几年了，MBA笔试完全没有信心！别怕，把握好提前面试，MBA就能成功一半！那么如何把握好面试呢？对于考取MBA，你是否也值得这样焦虑，毕业好几年了，MBA笔试完全没有信心！别怕，把握好提前面试，MBA就能成功一半！那么如何把握好面试呢？
+    </view>
+  </view>
+  <view class='course-bottom'>
+    <view class='free-left' bindtap='toPlayer' data-id="{{courseId}}">
+      <image class='free-try' src='../../images/course-try.png'></image>
+      <text>免费试听</text>
+    </view>
+    <view class='follow-right' bindtap='addFollow' data-id="{{courseId}}">
+      <text>关注系列</text>
+    </view>
+  </view>
+  <include src="../component/player/player-component.wxml" />
+</view>
+

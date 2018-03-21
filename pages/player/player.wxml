@@ -1,0 +1,50 @@
+<!--pages/player/player.wxml-->
+<view class='bodywrap'>
+  <view class='bground' >
+  <!-- style="margin-top:{{top}}rpx" -->
+    <image class='bgpic' src='../../images/test3.jpg'></image>
+  </view>
+  <view class='middle-btnwrap {{fixedFlag ? "fixedactive" : "" }}'>
+    <image class='middle-btn1' src="../../images/player-heart.png" bindtap="click"></image>
+    <image class='middle-btn2' src="../../images/player-comment.png"></image>
+    <image class='middle-btn3' src="../../images/player-text.png" bindtap='toText'></image>
+  </view>
+  <view class='course-list {{fixedFlag ? "marginactive" : "" }}'>
+  <!-- bindtouchstart='start' bindtouchmove='move' bindtouchend='end'   -->
+  <!-- style="height:{{listHeight}}rpx" -->
+    <view class='list-title'>
+      <image class='list-icon' src="../../images/player-list.png"></image>
+      <text class='list-name'>课程列表</text>
+      <text class='list-count'>（共8节）</text>
+    </view>
+    <view class='course-pre' wx:for="{{listCount}}" wx:key>
+      <text class='pre-top'>{{item}}.课程预告</text>
+      <view class='pre-bottom'>
+        <text class='finished'>已完成</text>
+        <text class='duration'>07:38/</text>
+        <text class='learncount'>56477次学习</text>
+      </view>
+    </view>
+  </view>
+  <view class='bottompart'>
+    <view class="control_button">
+      <text class="time"></text>  
+      <!--{{passed_str}}  -->
+      <view class="progress_bar">
+      <view class="passed_time" style="width:{{bar_width}}px"></view>
+      <view style="left:{{poiLeft}}px" bindtouchmove="mytouchmove" bindtouchstart="mytouchstart" bindtouchend="mytouchend" class="point">
+        <text>{{passed_str}}/{{time_total_str}}</text>
+      </view>
+      </view>
+      <!--{{time_total_str}}  -->
+      <text class="time"></text>  
+  </view>
+  <view class='controls'>
+    <image class='controls-pre' src='../../images/player-pre.png'></image>
+    <image class='controls-stop' src='../../images/player-stop.png' bindtap='stop' wx:if="{{controlShow}}"></image>
+    <image class='controls-play' src="../../images/player-play.png" bindtap= 'play' wx:if="{{!controlShow}}"></image>
+    <image class='controls-next' src='../../images/player-next.png'></image>
+  </view>
+</view>
+  
+</view>
