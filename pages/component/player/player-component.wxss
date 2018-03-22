@@ -38,12 +38,27 @@
   height: 16rpx;
   flex: 0 0 auto;
 }
-.com-play, .com-pause{
+/* .com-play, .com-pause{
   width: 62rpx;
   height: 62rpx;
   flex: 0 0 auto;
   margin-right: 35rpx;
-}
+} */
 .active{
   bottom: -100rpx;
+}
+  .cir{
+  margin-right: 35rpx;
+}  
+ cover-view{
+   width: 20px;
+   height: 20px;
+   margin: 5px auto;
+ }
+.com-play,.com-stop{
+  width: 20px;
+  height: 20px;
+}
+.com-play{
+  margin-left: 1px;
 }

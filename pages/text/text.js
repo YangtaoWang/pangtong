@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 播放和暂停按钮标志
+    controlShow: true,
     // 是否音乐弹框显示
     isShow: false
   },
@@ -29,11 +31,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    // 将播放器的played标志，赋值给isShow，用于是否能显示弹窗
-    this.setData({
-      isShow: util.playerData.played
-    })
+    util.isbgmPaused(bgm, this);
+    util.alreadyPlayed(this);
+    util.getDuration(bgm, this)
+    util.watchPause(bgm, this)
+    util.watchPlay(bgm, this)
+  },
+  playbgm: function () {
+    util.playbgm(bgm, this)
+  },
+  pausebgm: function () {
+    util.pausebgm(bgm, this)
   },
 
   /**

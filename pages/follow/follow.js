@@ -50,33 +50,39 @@ Page({
       url: '../index/index',
     })
   },
-  // 弹框上面的按钮播放
   playbgm: function () {
-    bgm.play();
-    // 修改util中播放按钮的标志数据，并同步的本地数据
-    // var res = util.changebtnFlag()
-    // this.setData({
-    //   controlShow: res
-    // })
-    // 修改按钮指示数据
-    this.setData({
-      controlShow: true
-    })
-
+    util.playbgm(bgm, this)
   },
-  // 弹框上面的按钮暂停
   pausebgm: function () {
-    bgm.pause();
-    // 修改util中播放按钮的标志数据，并同步的本地数据
-    // var res = util.changebtnFlag()
-    // this.setData({
-    //   controlShow: res
-    // })
-    // 修改按钮指示数据
-    this.setData({
-      controlShow: false
-    })
+    util.pausebgm(bgm, this)
   },
+  // 弹框上面的按钮播放
+  // playbgm: function () {
+  //   bgm.play();
+  //   // 修改util中播放按钮的标志数据，并同步的本地数据
+  //   // var res = util.changebtnFlag()
+  //   // this.setData({
+  //   //   controlShow: res
+  //   // })
+  //   // 修改按钮指示数据
+  //   this.setData({
+  //     controlShow: true
+  //   })
+
+  // },
+  // // 弹框上面的按钮暂停
+  // pausebgm: function () {
+  //   bgm.pause();
+  //   // 修改util中播放按钮的标志数据，并同步的本地数据
+  //   // var res = util.changebtnFlag()
+  //   // this.setData({
+  //   //   controlShow: res
+  //   // })
+  //   // 修改按钮指示数据
+  //   this.setData({
+  //     controlShow: false
+  //   })
+  // },
   // 取消关注
   cancelFollow: function (e) {
     // 取消时，取id,修改本地缓存
@@ -97,9 +103,7 @@ Page({
     // 弹出提示框
     wx.showToast({
       title: '取消成功',
-      icon: 'success',
-      duration: 1500,
-      mask: true
+      icon: 'success'
     })
     console.log("取消该关注，删除本地缓存，但数据还没有更新")
 
@@ -117,9 +121,7 @@ Page({
     // 弹出提示框
     wx.showToast({
       title: '重新添加关注',
-      icon: 'success',
-      duration: 1500,
-      mask: true
+      icon: 'success'
     })
   },
   /**
@@ -149,55 +151,64 @@ Page({
       tempArr.push(this.data.titleArr[itemc])
     }
     this.setData({
-      followItem: tempArr
+        followItem: tempArr
     })
     console.log(this.data.followItem)
+    util.isbgmPaused(bgm, this);
+    util.alreadyPlayed(this);
+    util.getDuration(bgm, this)
+    util.watchPause(bgm, this)
+    util.watchPlay(bgm, this)
 
-    // 将播放器的played标志，赋值给isShow，用于是否能显示音乐弹窗
-    this.setData({
-      isShow: util.playerData.played
-    })
-    // *******方案一*******
-    // // 页面加载时，用util中数据调整本页面按钮的数据
+
+
+
+    // // 将播放器的played标志，赋值给isShow，用于是否能显示音乐弹窗
     // this.setData({
-    //   controlShow: util.playerData.playbtnFlag
+    //   isShow: util.playerData.played,
+      
+    // })
+    // // *******方案一*******
+    // // // 页面加载时，用util中数据调整本页面按钮的数据
+    // // this.setData({
+    // //   controlShow: util.playerData.playbtnFlag
+    // // })
+
+    // // *******方案2*******
+    // // 页面加载时，判断是否播放状态修改按钮
+    // if (bgm.paused) {
+    //   this.setData({
+    //     controlShow: false
+    //   })
+    // } else {
+    //   this.setData({
+    //     controlShow: true
+    //   })
+    // }
+    // // 加载播放内容的总时间
+    // var duration = util.formatTime(bgm.duration)
+    // this.setData({
+    //   duration: duration
     // })
 
-    // *******方案2*******
-    // 页面加载时，判断是否播放状态修改按钮
-    if (bgm.paused) {
-      this.setData({
-        controlShow: false
-      })
-    } else {
-      this.setData({
-        controlShow: true
-      })
-    }
-    // 加载播放内容的总时间
-    var duration = util.formatTime(bgm.duration)
-    this.setData({
-      duration: duration
-    })
+    // var that = this;
+    // // 监听暂停事件
+    // bgm.onPause(function () {
+    //   console.log("启动了暂定");
+    //   // 修改按钮指示数据
+    //   that.setData({
+    //     controlShow: false
+    //   })
 
-    var that = this;
-    // 监听暂停事件
-    bgm.onPause(function () {
-      console.log("启动了暂定");
-      // 修改按钮指示数据
-      that.setData({
-        controlShow: false
-      })
-
-    })
-    // 监听播放事件
-    bgm.onPlay(function () {
-      console.log("启动了播放");
-      // 修改按钮指示数据
-      that.setData({
-        controlShow: true
-      })
-    }) 
+    // })
+    // // 监听播放事件
+    // bgm.onPlay(function () {
+    //   console.log("启动了播放");
+    //   // 修改按钮指示数据
+    //   that.setData({
+    //     controlShow: true
+    //   })
+    // }) 
    
   },
 

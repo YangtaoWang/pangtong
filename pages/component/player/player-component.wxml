@@ -6,7 +6,17 @@
       <text class='com-info'>{{duration}} | 6704次学习</text>
     </view>
     <image class='com-up' src="../../images/com-up.png"></image>
-    <image class='com-play' src="../../images/com-play.png" catchtap='playbgm' wx:if="{{!controlShow }}"></image>
-    <image class='com-pause' src="../../images/com-stop.png" catchtap='pausebgm' wx:if="{{ controlShow }}"></image>
+     <!-- <canvas class="cir" style="width:30px; height:30px;" canvas-id="canvasArc"> 
+    </canvas>  
+      <image class='com-play' src="../../images/com-play.png" catchtap='playbgm' wx:if="{{!controlShow }}"></image>
+    <image class='com-pause' src="../../images/com-stop.png" catchtap='pausebgm' wx:if="{{ controlShow }}"></image> -->
+    <view class="top"> 
+    <canvas class="cir" style="width:30px; height:30px;" canvas-id="canvasArc"> 
+      <cover-view>
+        <cover-image class='com-play' src='../../images/com-btnplay.png' wx:if="{{!controlShow }}" catchtap='playbgm' /> 
+        <cover-image class='com-stop' src='../../images/com-btnstop.png' wx:if="{{controlShow }}" catchtap='pausebgm' />
+      </cover-view>
+    </canvas>   
+  </view>  
   </view>
 </view>

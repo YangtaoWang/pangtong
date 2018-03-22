@@ -11,7 +11,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  margin-top: 150rpx;
+  margin-top: 250rpx;
 }
 .error-nonePic image{
   width: 274rpx;

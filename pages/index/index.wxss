@@ -50,8 +50,8 @@ swiper-item{
   justify-content: space-between;
 }
 .serie-left{
-  border: 1rpx solid white;
-  box-shadow: 0px 0rpx 10rpx 0rpx #999;
+  /* border: 1rpx solid white; */
+  box-shadow: 0px 0rpx 20rpx 0rpx #ccc;
   border-radius: 20rpx;
   position: relative;
   font-size: 0;
@@ -94,7 +94,8 @@ swiper-item{
  .serie-topic{
   font-size: 32rpx;
   margin-top: 10rpx; 
-  font-weight: 500;
+   font-weight: 500; 
+  /* font-weight: bold; */
 }
 .serie-name{
   position: relative;
@@ -121,8 +122,8 @@ swiper-item{
   border-radius: 15rpx;
   color: white;
   width: 114rpx;
-  height: 30rpx;
-  margin-top: 10rpx;
+  height: 32rpx;
+  /* margin-top: 10rpx; */
   flex: 0 0 auto;
 }
 .serie-time{
@@ -165,7 +166,7 @@ swiper-item{
 }
 .pic-wrap{
   background-color:#ccc; 
-  border: 1rpx solid white;
+  /* border: 1rpx solid white; */
   box-shadow: 0px 0rpx 10rpx 0rpx #999;
   border-radius: 20rpx;
   font-size: 0; 
@@ -180,6 +181,7 @@ swiper-item{
   font-size: 24rpx;
   text-align: center;
   margin-top: 20rpx;
+  font-weight: bold;
 }
 .history-wrap{
   border-bottom: 2rpx solid #e8e8e8;
@@ -204,6 +206,7 @@ swiper-item{
 .topic-title{
   font-size: 32rpx;
   width: 300rpx;
+  font-weight: 500;
 }
 .history-free{
   width: 78rpx;
@@ -222,7 +225,7 @@ swiper-item{
   font-weight: 500;
 }
 .history-text{
-  font-size: 22rpx;
+  font-size: 24rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
