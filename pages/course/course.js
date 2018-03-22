@@ -1,7 +1,8 @@
 // pages/course/course.js
 // var allplay = require('../../utils/allplay.js');
-const util = require('../../utils/util');
-const bgm = util.playerData.bgm;
+const util = require('../../utils/util'),
+  bgm = util.playerData.bgm,
+  cav_obj = util.cavData.cxt_arc;
 Page({
 
   /**
@@ -55,10 +56,6 @@ Page({
     that.setData({
       courseId: options.id
     });
-   
-    
-    
-   
 
   },
   toPlayer: function(e){
@@ -78,36 +75,6 @@ Page({
   pausebgm: function () {
     util.pausebgm(bgm, this)
   },
-  // // 弹框上面的按钮播放
-  // playbgm: function () {
-  //   bgm.play();
-  //   // *****方案一*****
-  //   // // 修改util中播放按钮的标志数据，并同步的本地数据
-  //   // var res = util.changebtnFlag()
-  //   // this.setData({
-  //   //   controlShow: res
-  //   // })
-  //   // ******方案2******
-  //   // 修改按钮指示数据
-  //   this.setData({
-  //     controlShow: true
-  //   })
-    
-  // },
-  // // 弹框上面的按钮暂停
-  // pausebgm: function () {
-  //   bgm.pause();
-  //   // 修改util中播放按钮的标志数据，并同步的本地数据
-  //   // var res = util.changebtnFlag()
-  //   // this.setData({
-  //   //   controlShow: res
-  //   // })
-  //   // ******方案2******
-  //   // 修改按钮指示数据
-  //   this.setData({
-  //     controlShow: false
-  //   })
-  // },
   addFollow: function (e) {
     console.log(e.currentTarget.dataset.id);
     var value = wx.getStorageSync('followed');
@@ -153,7 +120,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    util.cir_stopdraw(cav_obj)
   },
 
   /**
@@ -165,51 +132,6 @@ Page({
     util.getDuration(bgm, this)
     util.watchPause(bgm, this)
     util.watchPlay(bgm, this)
-    // var that = this;
-    // // 将播放器的played标志，赋值给isShow，用于是否能显示弹窗
-    // this.setData({
-    //   isShow: util.playerData.played
-    // })
-    // // *******方案一*******
-    // // 页面加载时，用util中数据调整本页面按钮的样式
-    // // this.setData({
-    // //   controlShow: util.playerData.playbtnFlag
-    // // })
-    // // *******方案2*******
-    // // 页面加载时，判断是否播放状态修改按钮
-    // if (bgm.paused) {
-    //   this.setData({
-    //     controlShow: false
-    //   })
-    // } else {
-    //   this.setData({
-    //     controlShow: true
-    //   })
-    // }
-    // // 加载播放内容的总时间
-    // var duration = util.formatTime(bgm.duration)
-    // this.setData({
-    //   duration: duration
-    // })
-
-    // // 监听暂停事件
-    // bgm.onPause(function () {
-    //   console.log("启动了暂定");
-    //   // 修改按钮指示数据
-    //   that.setData({
-    //     controlShow: false
-    //   })
-
-    // })
-    // // 监听播放事件
-    // bgm.onPlay(function () {
-    //   console.log("启动了播放");
-    //   // 修改按钮指示数据
-    //   that.setData({
-    //     controlShow: true
-    //   })
-
-    // })
   },
 
   /**

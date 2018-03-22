@@ -1,6 +1,7 @@
 // pages/follow/follow.js
-const util = require('../../utils/util');
-const bgm = util.playerData.bgm;
+const util = require('../../utils/util'),
+      bgm = util.playerData.bgm,
+      cav_obj = util.cavData.cxt_arc;
 // 开辟初始空间放缓存
 var value;
 Page({
@@ -28,7 +29,7 @@ Page({
    */
   onLoad: function (options) {
     
-    console.log("followonload")
+
   },
   toCourse: function (e) {
     wx.navigateTo({
@@ -56,33 +57,6 @@ Page({
   pausebgm: function () {
     util.pausebgm(bgm, this)
   },
-  // 弹框上面的按钮播放
-  // playbgm: function () {
-  //   bgm.play();
-  //   // 修改util中播放按钮的标志数据，并同步的本地数据
-  //   // var res = util.changebtnFlag()
-  //   // this.setData({
-  //   //   controlShow: res
-  //   // })
-  //   // 修改按钮指示数据
-  //   this.setData({
-  //     controlShow: true
-  //   })
-
-  // },
-  // // 弹框上面的按钮暂停
-  // pausebgm: function () {
-  //   bgm.pause();
-  //   // 修改util中播放按钮的标志数据，并同步的本地数据
-  //   // var res = util.changebtnFlag()
-  //   // this.setData({
-  //   //   controlShow: res
-  //   // })
-  //   // 修改按钮指示数据
-  //   this.setData({
-  //     controlShow: false
-  //   })
-  // },
   // 取消关注
   cancelFollow: function (e) {
     // 取消时，取id,修改本地缓存
@@ -128,7 +102,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("followonready")
+    util.cir_stopdraw(cav_obj)
   },
 
   /**

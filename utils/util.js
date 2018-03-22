@@ -6,8 +6,10 @@ const playerData = {
   bgm: wx.getBackgroundAudioManager(),
   // 播放暂停按钮状态
   playbtnFlag: false,
+  // 一下用于再次进入播放器页面更新页面数据
   // 播放了多久
   passed_str: "00:00",
+  durationTime: "00:00",
   // 变红色的进度条
   bar_width: 0,
   // 滑动按钮的相对位置
@@ -75,7 +77,9 @@ const playbgm = function(bgm, _this){
   // 修改按钮指示数据
   _this.setData({
     controlShow: true
-  })
+  });
+  drawCanvas(cavData.cxt_arc)
+
 }
 // 播放器弹出框点击暂停
 const pausebgm = function(bgm, _this){
@@ -84,6 +88,8 @@ const pausebgm = function(bgm, _this){
   _this.setData({
     controlShow: false
   })
+  stopCanvas();
+
 }
 
 // 页面加载时，判断是否播放状态修改按钮样式
@@ -130,8 +136,10 @@ const watchPause = (bgm, _this)=> {
     _this.setData({
       controlShow: false
     })
+    stopCanvas();
   })
- 
+  
+
 }
 
 const watchPlay = (bgm, _this)=> {
@@ -142,8 +150,18 @@ const watchPlay = (bgm, _this)=> {
     _this.setData({
       controlShow: true
     })
-
+    drawCanvas(cavData.cxt_arc)
   })
+
+}
+
+const watchEnd= function(bgm, _this){
+  bgm.onEnded(()=> {
+    _this.setData({
+      controlShow: false
+    })
+  })
+  console.log("end")
 }
 
 // 实时监听事件，设置埋点，以及将页面data实时更新的数据同步到util中共用数据
@@ -157,7 +175,7 @@ const onTime = function (bgm, that){
       bar_width: ((bgm.currentTime / bgm.duration)) * 265,
       passed_dis: ((bgm.currentTime / bgm.duration)) * 265
     });
-    console.log(bgm)
+   
     // 埋点数据
     var per = (bgm.currentTime / bgm.duration).toFixed(2);
     
@@ -191,12 +209,13 @@ const onTime = function (bgm, that){
     playerData.passed_str = that.data.passed_str;
     playerData.bar_width = that.data.bar_width;
     playerData.poiLeft = that.data.poiLeft;
+    playerData.durationTime = that.data.time_total_str,
     playerData.currentTime = bgm.currentTime;
     playerData.duration = bgm.duration;
     playerData.dataUrl = bgm.src;
 
     // 测试使用
-    console.log(playerData.passed_str + ":" + playerData.bar_width + ":" + playerData.poiLeft + ":" + playerData.currentTime + ":" + playerData.duration + ":" + playerData.dataUrl)
+
     
 
   });
@@ -245,7 +264,7 @@ const cir_update = function (cxt_arc) {
   cxt_arc.draw();
   console.log("画着呢" + cavData.start);
   if (cavData.start > 1.5) {
-    clearInterval(timer)
+    clearInterval(cavData.timer)
     cavData.start = -.5;
     console.log("停止了")
     // 停止的话画一幅
@@ -257,16 +276,16 @@ const cir_update = function (cxt_arc) {
 
 //  开启画圆动画
 const drawCanvas = function (obj) {
-  clearInterval(timer)
-  timer = setInterval(() => {
+  clearInterval(cavData.timer)
+  cavData.timer = setInterval(() => {
     cir_update(obj);
-  }, 10);
+  }, 1000);
 }
 
 // 结束画圆动画
 const stopCanvas = function () {
-  clearInterval(timer);
-  console.log(cavData)
+  clearInterval(cavData.timer);
+
 }
 
 
@@ -285,9 +304,12 @@ module.exports = {
   getDuration,
   watchPause,
   watchPlay,
+  watchEnd,
   onTime,
   cavData,
   drawCanvas,
-  stopCanvas
+  stopCanvas,
+  cir_stopdraw,
+  cir_update
 
 }

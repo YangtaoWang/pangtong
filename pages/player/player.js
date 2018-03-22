@@ -1,4 +1,3 @@
-
 // pages/player/player.js
 const util = require('../../utils/util'),
       bgm = util.playerData.bgm;
@@ -61,80 +60,20 @@ Page({
   },
   stop: function () {
     util.pausebgm(bgm, this)
-    // 暂停音乐
-    // bgm.pause();
-    // 修改util中播放按钮的标志数据，并同步的本地数据
-    // var res = util.changebtnFlag()
-    // this.setData({
-    //   controlShow: res
-    // })
-    // ******方案2******
-    // 修改按钮指示数据
-    // this.setData({
-    //   controlShow: false
-    // })
+   
   },
   // 播放音乐的方法
   play: function () {
 
     util.playbgm(bgm, this)
 
-    // *****方案一*****
-    // // 修改util中播放按钮的标志数据，并同步的本地数据
-    // var res = util.changebtnFlag()
-    // this.setData({
-    //   controlShow: res
-    // })
-    // ******方案2******
-    // 修改按钮指示数据
-    // this.setData({
-    //   controlShow: true
-    // })
-
-   
+    
     // wx.playBackgroundAudio({
     //   dataUrl: 'http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38',
     //   title: '鬼迷心窍'
     // });
     // // 播放的同时更新数据
-    // bgm.onTimeUpdate(function () {
-    //     that.setData({
-    //       passed_str: util.formatTime(bgm.currentTime),
-    //       time_total_str: util.formatTime(bgm.duration),
-    //       poiLeft: ((bgm.currentTime / bgm.duration) )*265,
-    //       bar_width: ((bgm.currentTime / bgm.duration)) *265,
-    //       passed_dis: ((bgm.currentTime / bgm.duration)) * 265
-    //     });
-    //     // console.log(bgm.currentTime)
-    //     var per = (bgm.currentTime/bgm.duration).toFixed(2);
 
-    //     console.log(per);
-    //     if(per == 0.25&&that.data.sendFlag1){
-    //       console.log("发送0.25");
-    //       that.setData({
-    //         sendFlag1: false
-    //       })
-    //     }
-    //     if(per==0.50&&that.data.sendFlag2){
-    //       console.log("发送0.50")
-    //       that.setData({
-    //         sendFlag2: false
-    //       })
-    //     }
-    //     if (per == 0.75 &&that.data.sendFlag3){
-    //       console.log("发送0.75");
-    //       that.setData({
-    //         sendFlag3: false
-    //       })
-    //     }
-    //     if(per==1.00&& that.data.sendFlag4){
-    //       console.log("发送完成1.0");
-    //       that.setData({
-    //         sendFlag4: false
-    //       })
-    //     }
-           
-    // });
 
 
   },
@@ -221,16 +160,6 @@ Page({
 
   },
 
-  // // 格式化时间
-  // formatTime: function (seconds) {
-  //   return [
-  //     parseInt(seconds / 60 % 60),
-  //     parseInt(seconds % 60)
-  //   ]
-  //     .join(":")
-  //     .replace(/\b(\d)\b/g, "0$1");
-  // }
-  // ,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -250,49 +179,43 @@ Page({
       util.playerData.played = true;
     }
     // 方案1页面加载时，用util中数据调整本页面按钮的样式
-    that.setData({
-      passed_str: util.playerData.passed_str,
-      bar_width: util.playerData.bar_width,
-      poiLeft: util.playerData.poiLeft
-    })
+    
+      that.setData({
+        passed_str: util.playerData.passed_str,
+        bar_width: util.playerData.bar_width,
+        poiLeft: util.playerData.poiLeft,
+        time_total_str: util.playerData.durationTime
+
+      })
+    
+    // if (util.playerData.played) {
+    //   that.setData({
+    //     passed_str: util.formatTime(bgm.currentTime),
+    //     time_total_str: util.formatTime(bgm.duration),
+    //     poiLeft: ((bgm.currentTime / bgm.duration)) * 265,
+    //     bar_width: ((bgm.currentTime / bgm.duration)) * 265
+    //   })
+    // }
+    
+
+
+    
 
     util.isbgmPaused(bgm, this);
     util.watchPause(bgm, this)
     util.watchPlay(bgm, this)
-    // *******方案2*******
-    // // 页面加载时，判断是否播放状态修改按钮
-    // if (bgm.paused) {
-    //   that.setData({
-    //     controlShow: false
-    //   })
-    // } else {
-    //   that.setData({
-    //     controlShow: true
-    //   })
-    // }
-    // // 监听暂停事件
-    // bgm.onPause(function(){
-    //   console.log("启动了暂定");
-    //   // 修改按钮指示数据
-    //   that.setData({
-    //     controlShow: false
-    //   })
-
-    // })
-    // // 监听播放事件
-    // bgm.onPlay(function(){
-    //   console.log("启动了播放");
-    //   // 修改按钮指示数据
-    //   that.setData({
-    //     controlShow: true
-    //   })
-    // })
     // 监听音乐自然结束的事件
-    bgm.onEnded(function(){
-      that.setData({
-        controlShow: false
+    // util.watchEnd(bgm, this)
+   
+   
+      bgm.onEnded(function () {
+        that.setData({
+          controlShow: false
+        })
       })
-    })
+    
+    
+    // 实时监听
     util.onTime(bgm, this)
     // 监听音乐手动停止的事件
     bgm.onStop(function(){
@@ -313,50 +236,7 @@ Page({
     
 
 
-    // bgm.onTimeUpdate(function () {
-    //   console.log("触发了onTime")
-    //   that.setData({
-    //     passed_str: util.formatTime(bgm.currentTime),
-    //     time_total_str: util.formatTime(bgm.duration),
-    //     poiLeft: ((bgm.currentTime / bgm.duration)) * 265,
-    //     bar_width: ((bgm.currentTime / bgm.duration)) * 265,
-    //     passed_dis: ((bgm.currentTime / bgm.duration)) * 265
-    //   });
-    //   // console.log(bgm.currentTime)
-    //   // 埋点数据
-    //   var per = (bgm.currentTime / bgm.duration).toFixed(2);
-    //   console.log(per);
-    //   if (per == 0.25 && that.data.sendFlag1) {
-    //     console.log("发送0.25");
-    //     that.setData({
-    //       sendFlag1: false
-    //     })
-    //   }
-    //   if (per == 0.50 && that.data.sendFlag2) {
-    //     console.log("发送0.50")
-    //     that.setData({
-    //       sendFlag2: false
-    //     })
-    //   }
-    //   if (per == 0.75 && that.data.sendFlag3) {
-    //     console.log("发送0.75");
-    //     that.setData({
-    //       sendFlag3: false
-    //     })
-    //   }
-    //   if (per == 1.00 && that.data.sendFlag4) {
-    //     console.log("发送完成1.0");
-    //     that.setData({
-    //       sendFlag4: false
-    //     })
-    //   }
-
-    //   // 更新util中相对应的公共数据
-    //   util.playerData.passed_str = that.data.passed_str;
-    //   util.playerData.bar_width = that.data.bar_width;
-    //   util.playerData.poiLeft = that.data.poiLeft;
-
-    // });
+    
     
    
   },

@@ -1,6 +1,7 @@
 // pages/text/text.js
 const util = require('../../utils/util'),
-  bgm = util.playerData.bgm;
+      bgm = util.playerData.bgm,
+      cav_obj = util.cavData.cxt_arc;
 Page({
 
   /**
@@ -24,7 +25,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    util.cir_stopdraw(cav_obj)
   },
 
   /**
@@ -81,5 +82,10 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+   toPlayer: function (e) {
+    wx.navigateTo({
+      url: '../player/player?id=' + e.currentTarget.dataset.id
+    })
   }
 })
