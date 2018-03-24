@@ -32,7 +32,7 @@ Page({
       playing: false,
       title: "乔布斯的魔力演讲",
       music: {
-        url: "http://image.kaolafm.net/mz/audios/201803/f076615f-a207-480e-a622-2dbc77ff5a1e.mp3",
+        url: "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38",
         title: "夜夜夜夜-齐秦",
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000"
       }
@@ -67,17 +67,14 @@ Page({
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
       }
     }],
-    // 判断列表中的播放和暂停
-    playIndex:"",
     coursetitle:"",
-    postId:"",
     // currentIndex用于判断变背景
     currentIndex: -1,
-    // 存放音乐下标
+    // 存放播放音乐的下标
     _currentIndex: -1,
-    currentSrc: "",
     // 是否触发过关闭
     isStoped: false
+
 
   },
   toCourse: function (e) {
@@ -98,6 +95,7 @@ Page({
     }else{
       console.log("走了")
       var index = this.data._currentIndex;
+      // 为了避免过快点击卡死，可以不加定时器
       setTimeout(()=>{
         bgm.src = this.data.music[index].music.url;
         bgm.startTime = this.data.music[index].music.currentTime;
@@ -122,30 +120,7 @@ Page({
       currentIndex: -1
     })
   },
-  // play: function(e){
-
-  //   var id = e.target.dataset.id;
-  //   this.setData({
-  //     playIndex: id
-  //   })
-  //   bgm.src = this.data.music[id].music.url;
-  //   bgm.title = this.data.music[id].music.title;
-  //   // 播放标记词played改为true,用于是否显示底部播放器弹窗
-  //   util.playerData.played = true;
-
-  //   this.setData({
-  //     isShow: true,
-  //     controlShow: true,
-  //     coursetitle: this.data.music[id].music.title
-  //   });
-
-  // },
-  // pause: function(){
-  //   bgm.pause();
-  //   this.setData({
-  //     controlShow: false
-  //   });
-  // },
+ 
   playorpause:function(e){
     var id = e.target.dataset.id;
     var playing = "music[" + e.target.dataset.id + "].playing";
@@ -159,6 +134,8 @@ Page({
 
       // 全局开启播放器出现的标记
       util.playerData.played = true;
+      console.log(bgm.title)
+
 
       this.setData({
         isShow: true,
@@ -167,6 +144,7 @@ Page({
         _currentIndex: id,
         coursetitle: this.data.music[id].title
       })
+      // util.playerData.conTitle = this.coursetitle;
       console.log(this.data.music[id].playing)
 
     } else { 
@@ -186,6 +164,7 @@ Page({
         bgm.src = this.data.music[id].music.url;
         bgm.startTime = this.data.music[id].music.currentTime;
         bgm.title = this.data.music[id].music.title;
+        // util.playerData.conTitle = this.coursetitle;
         this.setData({
           [playing]: true,
           currentIndex: id,
@@ -269,16 +248,24 @@ Page({
       // 返回时是暂停
       that.setData({
         controlShow: false,
-        currentIndex: -1
+        currentIndex: -1,
+        coursetitle: util.playerData.conTitle,
+        duration: util.playerData.time_total_str
       })
     }else{
       // var currentIndex = this.data._currentIndex;
+      console.log("走了显示")
       that.setData({
         controlShow: true,
-        currentIndex: currentIndex
-
+        currentIndex: currentIndex,
+        coursetitle: util.playerData.conTitle
+      
       })
     }
+    // that.setData({
+    //   courseTitle: util.playerData.conTitle,
+    //   duration: util.playerData.conDuration
+    // })
 
     // 监听暂停事件
     bgm.onPause(function () {
@@ -305,16 +292,17 @@ Page({
       console.log("启动了更新");
       var currentIndex = that.data._currentIndex;
       var currentTime = "music[" + currentIndex + "].music.currentTime";
-
+      // console.log(bgm.title)
         // 修改按钮指示数据
         that.setData({
-          duration: util.formatTime(bgm.duration),
-          [currentTime]: bgm.currentTime
+          [currentTime]: bgm.currentTime,
+          duration: util.formatTime(bgm.duration)
         })
 
         util.playerData.passed_str = util.formatTime(bgm.currentTime),
         util.playerData.time_total_str = util.formatTime(bgm.duration),
         util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
+        
       
     })
 

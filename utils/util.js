@@ -11,7 +11,9 @@ const playerData = {
   // 变红色的进度条
   bar_width: 0,
   // 滑动按钮的相对位置
-  poiLeft: 0
+  poiLeft: 0,
+  conTitle:"",
+  playingId: 0
 
 }
 const changeplayState = function(){

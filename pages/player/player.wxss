@@ -150,3 +150,6 @@
 .controls-next{
   margin-right: 165rpx;
 }
+.forActive{
+  color: red;
+}  

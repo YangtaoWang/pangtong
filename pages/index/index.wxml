@@ -110,7 +110,7 @@
             <view class='history-info' >
               <text>共2节课 | 24分钟28秒</text>
                 <view class='{{index == currentIndex ? ".index-play-b" : "index-play" }}' data-it='{{item}}' 
-                  catchtap='playorpause' data-id='{{index}}'></view>
+                  catchtap='playorpause' data-id='{{item.postId}}'></view>
                 <!-- <image src="../../images/index-play.png" class='history-play' 
                 wx:if="{{playIndex==3 ? false : true}}" catchtap='play' data-id="3" ></image>
                  <image src="../../images/follow-text.png" class='history-play' 

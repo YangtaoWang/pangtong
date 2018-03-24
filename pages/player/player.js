@@ -52,7 +52,7 @@ Page({
     checkHeight:309,
     music: [{
       postId: 0,
-      playing: 0,
+      playing: false,
       title: "乔布斯的魔力演讲",
       music: {
         url: "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38",
@@ -61,33 +61,69 @@ Page({
       }
     }, {
       postId: 1,
-      playing: 0,
+      playing: false,
       title: "有效管理你的健康",
       music: {
-        url: "http://ws.stream.qqmusic.qq.com/C100003GdCmG4NkEOR.m4a?fromtag=38",
+        currentTime: 0,
+        url: "http://od.open.qingting.fm/vod/00/00/0000000000000000000025922518_64.m4a",
         title: "鬼迷心窍-李宗盛",
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000002xOmp62kqSic.jpg?max_age=2592000"
       }
     }, {
       postId: 2,
-      playing: 0,
+      playing: false,
       title: "怎么健康活到40岁",
       music: {
+        currentTime: 0,
         url: "http://ws.stream.qqmusic.qq.com/C100004HLusI2lLjZy.m4a?fromtag=38",
         title: "女儿情-万晓利",
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000004Wv5BO30pPc0.jpg?max_age=2592000"
       }
     }, {
       postId: 3,
-      playing: 0,
+      playing: false,
       title: "心理学：人的身体入侵大脑",
       music: {
+        currentTime: 0,
         url: "http://ws.stream.qqmusic.qq.com/C100002mWVx72p8Ugp.m4a?fromtag=38",
         title: "恋恋风尘-老狼",
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
       }
+    }, {
+      postId: 4,
+      playing: false,
+      title: "广播电视基础课程",
+      music: {
+        currentTime: 0,
+        url: "http://image.kaolafm.net/mz/audios/201803/e87b841f-6483-458d-9c37-204a61b5271b.mp3",
+        title: "无怨无悔",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
     }],
-    isSlider: false
+    isSlider: false,
+    // 循环遍历时，变背景色的标记
+    forIndex: 0,
+    // 储存播放时的下标
+    _currentIndex:0,
+    // 是否触发过关闭
+    isStoped: false
+
+  },
+  clickPlay: function(e){
+    var id = e.currentTarget.dataset.id;
+    console.log(typeof id)
+    if(bgm.src !== this.data.music[id].music.url){
+      bgm.src = this.data.music[id].music.url;
+      bgm.startTime = this.data.music[id].music.currentTime;
+      bgm.title = this.data.music[id].music.title;
+      util.playerData.conTitle = this.data.music[id].title;
+      util.playerData.playingId = id;
+
+      this.setData({
+        forIndex: id,
+        _currentIndex:id
+      })
+    }
 
   },
   toText: function () {
@@ -104,57 +140,56 @@ Page({
   },
   // 播放音乐的方法
   play: function () {
-    bgm.play();
-    this.setData({
-      controlShow: true
-    })
+    if (!this.data.isStoped) {
+      bgm.play();
+    } else {
+      console.log("走了")
+      var index = this.data._currentIndex;
+      // 为了避免过快点击卡死，可以不加定时器
+      setTimeout(() => {
+        bgm.src = this.data.music[index].music.url;
+        bgm.startTime = this.data.music[index].music.currentTime;
+        bgm.title = this.data.music[index].music.title;
+        util.playerData.conTitle = this.data.music[index].title;
+        util.playerData.playingId = index;
 
-    // var that = this;
-    // wx.playBackgroundAudio({
-    //   dataUrl: 'http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38',
-    //   title: '鬼迷心窍'
-    // });
-    // 播放的同时更新数据
-    // bgm.onTimeUpdate(function () {
-    //     that.setData({
-    //       passed_str: that.formatTime(bgm.currentTime),
-    //       time_total_str: that.formatTime(bgm.duration),
-    //       poiLeft: ((bgm.currentTime / bgm.duration) )*265,
-    //       bar_width: ((bgm.currentTime / bgm.duration)) *265,
-    //       passed_dis: ((bgm.currentTime / bgm.duration)) * 265
-    //     });
-    //     // console.log(bgm.currentTime)
-    //     var per = (bgm.currentTime/bgm.duration).toFixed(2);
+      }, 300)
 
-    //     console.log(per);
-    //     if(per == 0.25&&that.data.sendFlag1){
-    //       console.log("发送0.25");
-    //       that.setData({
-    //         sendFlag1: false
-    //       })
-    //     }
-    //     if(per==0.50&&that.data.sendFlag2){
-    //       console.log("发送0.50")
-    //       that.setData({
-    //         sendFlag2: false
-    //       })
-    //     }
-    //     if (per == 0.75 &&that.data.sendFlag3){
-    //       console.log("发送0.75");
-    //       that.setData({
-    //         sendFlag3: false
-    //       })
-    //     }
-    //     if(per==1.00&& that.data.sendFlag4){
-    //       console.log("发送完成1.0");
-    //       that.setData({
-    //         sendFlag4: false
-    //       })
-    //     }
-           
-    // });
+    }
 
 
+  },
+  next: function(){
+    var index = this.data._currentIndex;
+    if(index <= this.data.music.length-2){
+      bgm.src = this.data.music[index + 1].music.url;
+      bgm.startTime = this.data.music[index + 1].music.currentTime;
+      bgm.title = this.data.music[index+1].music.title;
+      util.playerData.conTitle = this.data.music[index+1].title;
+      util.playerData.playingId = index + 1;
+
+      this.setData({
+        _currentIndex: index + 1,
+        forIndex: index + 1
+      })
+    }
+    
+  },
+  pre: function(){
+    var index = this.data._currentIndex;
+    if (index > 0) {
+      bgm.src = this.data.music[index - 1].music.url;
+      bgm.startTime = this.data.music[index - 1].music.currentTime;
+      bgm.title = this.data.music[index - 1].music.title;
+      util.playerData.conTitle = this.data.music[index-1].title;
+      util.playerData.playingId = index - 1;
+      
+
+      this.setData({
+        _currentIndex: index - 1,
+        forIndex: index-1
+      })
+    }
   },
   mytouchstart: function (e) {
     console.log(e.touches[0].pageX)
@@ -254,6 +289,14 @@ Page({
    */
 
   onLoad: function (options) {
+    // 默认进入该页面首次的title设置为
+    var index = util.playerData.playingId;
+    util.playerData.conTitle = this.data.music[index].title;
+    this.setData({
+      forIndex: index,
+      _currentIndex: index
+    })
+    
 
     console.log("playeronload")
     var that = this;
@@ -300,25 +343,50 @@ Page({
         controlShow: false
       })
     })
-    bgm.onEnded(function(){
+    
+    bgm.onEnded( ()=> {
+      var index = this.data._currentIndex;
+      if (index < this.data.music.length - 1) {
+        bgm.src = this.data.music[index + 1].music.url;
+        bgm.startTime = this.data.music[index + 1].music.currentTime;
+        bgm.title = this.data.music[index + 1].music.title;
+        this.setData({
+          _currentIndex: index + 1,
+          forIndex: index + 1
+        })
+      }
+
+    })
+
+    bgm.onStop(function () {
+      // 点击暂停，开始暂停的标记
+      console.log("启动了关闭")
+      console.log(bgm.src)
       that.setData({
-        controlShow: false
+        controlShow: false,
+        currentIndex: -1,
+        isStoped: true
       })
+
     })
 
 
     bgm.onTimeUpdate(function () {
+      console.log("启动了更新");
+      var currentIndex = that.data._currentIndex;
+      var currentTime = "music[" + currentIndex + "].music.currentTime";
+      // 更新是要把当前id的播放时间存起来
       if(!that.data.isSlider){
         that.setData({
           passed_str: that.formatTime(bgm.currentTime),
           time_total_str: that.formatTime(bgm.duration),
           poiLeft: ((bgm.currentTime / bgm.duration)) * 265,
           bar_width: ((bgm.currentTime / bgm.duration)) * 265,
-          passed_dis: ((bgm.currentTime / bgm.duration)) * 265
+          passed_dis: ((bgm.currentTime / bgm.duration)) * 265,
+          [currentTime]: bgm.currentTime
         });
       }
-      
-      // console.log(bgm.currentTime)
+
       // 埋点数据
       var per = (bgm.currentTime / bgm.duration).toFixed(2);
       console.log(per);
@@ -348,9 +416,9 @@ Page({
       }
 
       // 更新util中相对应的公共数据
-      util.playerData.passed_str = that.data.passed_str;
-      util.playerData.bar_width = that.data.bar_width;
-      util.playerData.poiLeft = that.data.poiLeft;
+      util.playerData.passed_str = util.formatTime(bgm.currentTime);
+      util.playerData.time_total_str = util.formatTime(bgm.duration);
+      util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
 
     });
 
