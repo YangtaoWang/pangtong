@@ -2,21 +2,11 @@
   <view class='com-inner'>
     <image class='com-pic' src='../../images/test3.jpg' mode='aspectFill'></image>
     <view class='com-intro'>
-      <text class='com-title'>2.如何打造顶级产品体验</text>
+      <text class='com-title'>{{coursetitle}}</text>
       <text class='com-info'>{{duration}} | 6704次学习</text>
     </view>
     <image class='com-up' src="../../images/com-up.png"></image>
-     <!-- <canvas class="cir" style="width:30px; height:30px;" canvas-id="canvasArc"> 
-    </canvas>  
-      <image class='com-play' src="../../images/com-play.png" catchtap='playbgm' wx:if="{{!controlShow }}"></image>
-    <image class='com-pause' src="../../images/com-stop.png" catchtap='pausebgm' wx:if="{{ controlShow }}"></image> -->
-    <view class="top"> 
-    <canvas class="cir" style="width:30px; height:30px;" canvas-id="canvasArc"> 
-      <cover-view>
-        <cover-image class='com-play' src='../../images/com-btnplay.png' wx:if="{{!controlShow }}" catchtap='playbgm' /> 
-        <cover-image class='com-stop' src='../../images/com-btnstop.png' wx:if="{{controlShow }}" catchtap='pausebgm' />
-      </cover-view>
-    </canvas>   
-  </view>  
+    <image class='com-play' src="../../images/com-play.png" catchtap='playbgm' wx:if="{{!controlShow }}"></image>
+    <image class='com-pause' src="../../images/com-stop.png" catchtap='pausebgm' wx:if="{{controlShow }}"></image>
   </view>
 </view>

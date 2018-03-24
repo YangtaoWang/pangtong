@@ -15,7 +15,7 @@
         </view>
         <view class='intro-wrap'>
           <image class='teacher-intro' src='../../images/course-title.png'></image>
-          <text class='teacher-inro-text'>十年MBA面试福到家经验，辅助千余学员成功考取MBA学校，全国首创"MBA考生院校"</text>
+          <text class='teacher-inro-text'>十年MBA面试福到家经验，辅助千余学员成功考取MBA学校，全国首创</text>
         </view>
       </view>
     </view>
@@ -23,7 +23,7 @@
   <view class='course'>
     <view class='course-title'>
       <image src='../../images/course-list.png'></image>
-      <text>课程内容</text>
+      <text class= "course-cintro">课程内容</text>
       <text class='course-count'>(共8节)</text>
     </view>
     <scroll-view class='courselist-wrap' style='height:{{height}}rpx' >
@@ -33,7 +33,7 @@
           <image class='control-btn' src='../../images/course-control.png'></image>
           <view class='list-inner'>
               <text class='inner-title'>1.摆正阅读的3个心态</text>
-              <view>
+              <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
                 <image class='course-time' src="../../images/course-count.png"></image>
@@ -49,7 +49,7 @@
           <image class='control-btn' src='../../images/course-control.png'></image>
           <view class='list-inner'>
               <text class='inner-title'>1.摆正阅读的3个心态</text>
-              <view>
+              <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
                 <image class='course-time' src="../../images/course-count.png"></image>
@@ -65,7 +65,7 @@
           <image class='control-btn' src='../../images/course-control.png'></image>
           <view class='list-inner'>
               <text class='inner-title'>1.摆正阅读的3个心态</text>
-              <view>
+              <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
                 <image class='course-time' src="../../images/course-count.png"></image>
@@ -81,7 +81,7 @@
           <image class='control-btn' src='../../images/course-control.png'></image>
           <view class='list-inner'>
               <text class='inner-title'>1.摆正阅读的3个心态</text>
-              <view>
+              <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
                 <image class='course-time' src="../../images/course-count.png"></image>
@@ -164,7 +164,7 @@
   <view class='course-intro'>
      <view class='course-title intro-title'>
       <image src='../../images/course-intro.png'></image>
-      <text bindtap="testJump">课程介绍</text>
+      <text class= "course-cintro" bindtap="testJump">课程介绍</text>
       <text class='course-count'>(982关注)</text>
     </view>
     <view class='intro-text'>

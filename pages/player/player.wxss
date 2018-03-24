@@ -64,9 +64,9 @@
   margin-left: 40rpx;
 }
 .list-name{
-  font-size: 30rpx;
-  font-weight: bold;
-  margin-left: 20rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-left: 14rpx;
 
 }
 .list-count{
@@ -76,7 +76,7 @@
 }
 .course-pre{
   border-bottom: 2rpx solid #d9d9d9;
-  padding: 3rpx 0 10rpx;
+  padding: 12rpx 0 10rpx;
 }
 .pre-top{
   font-size: 28rpx;

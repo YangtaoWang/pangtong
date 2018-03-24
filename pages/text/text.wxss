@@ -13,7 +13,7 @@
 
 .text-title{
   font-size: 50rpx;
-  line-height: 50rpx;
+  line-height: 15rpx;
   font-weight: bold;
 }
 .gray-line{

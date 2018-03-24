@@ -1,14 +1,7 @@
 // var allplay = require("../../utils/allplay")；
-// var timer;
-// // 页面渲染完成 
-// var cxt_arc = wx.createCanvasContext('canvasArc');
-// //创建并返回绘图上下文context对象。
-// var start = -.5;
-// // 每一秒修改的距离
-// var speed = 2 / 286;
 const util = require('../../utils/util'),
-      bgm = util.playerData.bgm,
-      cav_obj = util.cavData.cxt_arc;
+      bgm = util.playerData.bgm;
+
 
 Page({
 
@@ -34,102 +27,323 @@ Page({
     // 时长
     duration:"00:00",
     showErrorComponent: true,
-    durationTime:"",
-    currentTime:""
-
+    music: [{
+      postId: 0,
+      playing: false,
+      title: "乔布斯的魔力演讲",
+      music: {
+        url: "http://image.kaolafm.net/mz/audios/201803/f076615f-a207-480e-a622-2dbc77ff5a1e.mp3",
+        title: "夜夜夜夜-齐秦",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 1,
+      playing: false,
+      title:"有效管理你的健康",
+      music: {
+        currentTime: 0,
+        url: "http://od.open.qingting.fm/vod/00/00/0000000000000000000025922518_64.m4a",
+        title: "鬼迷心窍-李宗盛",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000002xOmp62kqSic.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 2,
+      playing: false,
+      title:"怎么健康活到40岁",
+      music: {
+        currentTime: 0,
+        url: "http://ws.stream.qqmusic.qq.com/C100004HLusI2lLjZy.m4a?fromtag=38",
+        title: "女儿情-万晓利",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000004Wv5BO30pPc0.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 3,
+      playing: false,
+      title: "心理学：人的身体入侵大脑",
+      music: {
+        currentTime: 0,
+        url: "http://ws.stream.qqmusic.qq.com/C100002mWVx72p8Ugp.m4a?fromtag=38",
+        title: "恋恋风尘-老狼",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
+    }],
+    // 判断列表中的播放和暂停
+    playIndex:"",
+    coursetitle:"",
+    postId:"",
+    // currentIndex用于判断变背景
+    currentIndex: -1,
+    // 存放音乐下标
+    _currentIndex: -1,
+    currentSrc: "",
+    // 是否触发过关闭
+    isStoped: false
 
   },
+  toCourse: function (e) {
+    wx.navigateTo({
+      url: '../course/course?id=' + e.currentTarget.dataset.id,
+    })
+  },
+  toPlayer: function(){
+    var that = this;
+    wx.navigateTo({
+      url: '../player/player?id=' + that.data._currentIndex,
+    })
+  },
+  // 弹框上面的按钮播放
+  playbgm: function () {
+    if(!this.data.isStoped){
+      bgm.play();
+    }else{
+      console.log("走了")
+      var index = this.data._currentIndex;
+      setTimeout(()=>{
+        bgm.src = this.data.music[index].music.url;
+        bgm.startTime = this.data.music[index].music.currentTime;
+        bgm.title = this.data.music[index].music.title;
+        
+      },300)
+      
+    }
+    // 修改按钮指示数据
+    this.setData({
+      controlShow: true,
+      currentIndex: this.data._currentIndex
+    })
+    
+  },
+  // // 弹框上面的按钮暂停
+  pausebgm: function () {
+    bgm.pause();
+    // 修改按钮指示数据
+    this.setData({
+      controlShow: false,
+      currentIndex: -1
+    })
+  },
+  // play: function(e){
 
+  //   var id = e.target.dataset.id;
+  //   this.setData({
+  //     playIndex: id
+  //   })
+  //   bgm.src = this.data.music[id].music.url;
+  //   bgm.title = this.data.music[id].music.title;
+  //   // 播放标记词played改为true,用于是否显示底部播放器弹窗
+  //   util.playerData.played = true;
+
+  //   this.setData({
+  //     isShow: true,
+  //     controlShow: true,
+  //     coursetitle: this.data.music[id].music.title
+  //   });
+
+  // },
+  // pause: function(){
+  //   bgm.pause();
+  //   this.setData({
+  //     controlShow: false
+  //   });
+  // },
+  playorpause:function(e){
+    var id = e.target.dataset.id;
+    var playing = "music[" + e.target.dataset.id + "].playing";
+    // 未播放状态时：第一次点击，且没有播放
+    // && this.data.currentIndex == -1 未定判断条件
+    if (!this.data.music[id].playing ) {// 第一次播放
+      
+      bgm.startTime= this.data.music[id].music.currentTime;
+      bgm.src = this.data.music[id].music.url;
+      bgm.title = this.data.music[id].music.title;
+
+      // 全局开启播放器出现的标记
+      util.playerData.played = true;
+
+      this.setData({
+        isShow: true,
+        [playing]: true,
+        currentIndex: id,
+        _currentIndex: id,
+        coursetitle: this.data.music[id].title
+      })
+      console.log(this.data.music[id].playing)
+
+    } else { 
+      // 播放状态时,判断是否点击是自己
+      // 如果是自己
+      if(this.data.currentIndex == id){
+        bgm.pause();
+        // 修改判断的切换播放的标记
+        this.setData({
+          currentIndex: -1,
+          [playing]: false
+        })
+        
+
+      }else{
+        // 如果点击的是其他按钮
+        bgm.src = this.data.music[id].music.url;
+        bgm.startTime = this.data.music[id].music.currentTime;
+        bgm.title = this.data.music[id].music.title;
+        this.setData({
+          [playing]: true,
+          currentIndex: id,
+          _currentIndex: id,
+          coursetitle: this.data.music[id].title
+        })
+
+      }
+    
+    }
+
+  // // 判断
+  //   var currentIndex = this.data.currentIndex;
+  //   var id = e.target.dataset.id;
+  //   console.log("第二次走")
+  //   this.setData({
+  //     currentIndex: id,
+  //     _currentIndex: id,
+  //     coursetitle: this.data.music[id].title
+  //   })
+  //   // obj.music.url !== bgm.src
+  //   // 用数据结构里面的playing做标记
+  //   var playing = "music[" + e.target.dataset.id + "].playing";
+  //   if(!this.data.music[id].playing){// 第一次播放
+  //     // bgm.play();
+  //     bgm.startTime= this.data.music[id].music.currentTime;
+  //     bgm.src = this.data.music[id].music.url;
+  //     // bgm.seek(this.data.music[id].music.currentTime)
+  //     bgm.title = this.data.music[id].music.title;
+     
+  //     // 全局开启播放器出现的标记
+  //     util.playerData.played = true;
+      
+  //     this.setData({
+  //       [playing]: true
+  //     })
+  //     console.log(this.data.music[id].playing)
+       
+  //   } else { //再次点击暂停
+  //     this.setData({
+  //       currentIndex: -1
+  //     })
+  //     bgm.pause();
+  //     // 修改判断的切换播放的标记
+  //     this.setData({
+  //       [playing]: false
+  //     })
+  //   }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 模拟加载不出来的组件
     setTimeout(()=>{
       this.setData({
         showErrorComponent: false
       })
     }, 1000)
-    console.log(util)
   
   },
-  toCourse: function(e){
-    wx.navigateTo({
-      url: '../course/course?id=' + e.currentTarget.dataset.id,
-    })
-  },
-  // 点击组件跳转到音乐播放器,点击红色按键也跳转
-  toPlayer: function(e){
-    wx.navigateTo({
-      url: '../player/player?id=' + e.currentTarget.dataset.id
-    })
-  },
-  playbgm: function () {
-    util.playbgm(bgm, this);
-    
-  },
-  pausebgm: function () {
-    util.pausebgm(bgm, this);
-    
-  },
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    util.cir_stopdraw(cav_obj)
-  },
-  // 添加缓存
-  addFollow: function (e) {
-    console.log(e.target.dataset.title);
-    var value = wx.getStorageSync('followed');
-    if (!value) {
-      value = [];
-      value.push(e.target.dataset.title);
-      wx.setStorageSync('followed', value);
-      console.log("第一次创建缓存并添加")
-    } else {
-      if (value.indexOf(e.target.dataset.title) == -1) {
-        value.push(e.target.dataset.title);
-        wx.setStorageSync('followed', value);
-        console.log("添加了" + e.target.dataset.title);
-      }
-    }
-    console.log("处理之后的缓存为" + wx.getStorageSync('followed'))
 
   },
+  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-    util.isbgmPaused(bgm ,this);
-    util.alreadyPlayed(this);
-    util.getDuration(bgm, this);
-    util.watchPause(bgm, this);
-    util.watchPlay(bgm, this);
-
-    // bgm.onTimeUpdate(()=>{
-    //   this.setData({
-    //     durationTime: bgm.duration,
-    //     currentTime: bgm.currentTime
-    //   })
-    //   console.log(this.data.currentTime + ":" + this.data.durationTime);
-      
-    // })
-
-    
-
-    if (this.data.isShow == true){
-      var start = (bgm.currentTime/bgm.duration)*2 - 0.5;
-      util.cavData.start = start;
-      if (!bgm.paused) {
-        util.drawCanvas(cav_obj);
-      } else {
-        util.cir_update(cav_obj)
-      }
-    }
    
+    // *******方案一*******
+    // 进入时获取上一次点击播放的id，
+    var that = this;
+    var currentIndex = that.data._currentIndex;
+    // 页面加载时，判断然后修改播放状态按钮
+    if(bgm.paused){
+      // 返回时是暂停
+      that.setData({
+        controlShow: false,
+        currentIndex: -1
+      })
+    }else{
+      // var currentIndex = this.data._currentIndex;
+      that.setData({
+        controlShow: true,
+        currentIndex: currentIndex
+
+      })
+    }
+
+    // 监听暂停事件
+    bgm.onPause(function () {
+      console.log("启动了暂定");
+      // 修改按钮指示数
+      that.setData({
+        controlShow: false,
+        currentIndex: -1
+      })
+    })
+
+    // 监听播放事件
+    bgm.onPlay(function () {
+      console.log("启动了播放");
+      // 修改按钮指示数据
+      // var index = that.data.;
+      that.setData({
+        controlShow: true,
+        currentIndex: that.data._currentIndex
+      })
+    })
+    // 监听更新事件
+    bgm.onTimeUpdate(function () {
+      console.log("启动了更新");
+      var currentIndex = that.data._currentIndex;
+      var currentTime = "music[" + currentIndex + "].music.currentTime";
+
+        // 修改按钮指示数据
+        that.setData({
+          duration: util.formatTime(bgm.duration),
+          [currentTime]: bgm.currentTime
+        })
+
+        util.playerData.passed_str = util.formatTime(bgm.currentTime),
+        util.playerData.time_total_str = util.formatTime(bgm.duration),
+        util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
+      
+    })
+
+    bgm.onEnded(function(){
+
+      that.setData({
+        controlShow: false,
+        currentIndex: -1
+      })
+
+    })
+
+    bgm.onStop(function(){
+      // 点击暂停，开始暂停的标记
+
+      console.log(bgm.src)
+      that.setData({
+        controlShow: false,
+        currentIndex: -1,
+        isStoped: true
+      })
+
+    })
+    bgm.onError(function(errCode){
+      console.log(errCode)
+    })
+
     
+      
   },
 
   /**

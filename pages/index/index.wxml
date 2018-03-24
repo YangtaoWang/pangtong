@@ -10,7 +10,7 @@
   </view>
   <view class='serie'> 
     <view class='serie-title'>
-      <image src="../../images/index-reco.png"></image>
+      <image src="../../images/index-reco1.png"></image>
       <text>推荐课程</text>
     </view>
     <scroll-view>
@@ -29,7 +29,7 @@
               <image class='speaker-name-icon' src="../../images/index-name.png"></image>
               <text class='speaker-name'>张秋丽</text>
             </view>
-            <view>
+            <view class='serie-doctor'>
               <image class='speaker-title-icon' src="../../images/index-title.png"></image>
               <text class='speaker-title'>北京协和医院医学博士</text>
             </view>
@@ -47,7 +47,7 @@
   </view>
   <view class='hot'> 
     <view class='serie-title'>
-      <image src="../../images/index-hot.png" mode='widthFix'></image>
+      <image src="../../images/index-hot1.png" mode='widthFix'></image>
       <text>热门分类</text>
     </view>
     <scroll-view>
@@ -83,11 +83,11 @@
   </view>
   <view class='history'> 
     <view class='serie-title'>
-      <image src="../../images/index-history.png" mode='widthFix'></image>
+      <image src="../../images/index-history1.png" mode='widthFix'></image>
       <text>历史系列课</text>
     </view>
     <scroll-view>
-      <view class='history-wrap'>
+      <view class='history-wrap' wx:for="{{music}}" wx:key>
         <view class='history-inner' bindtap='toCourse' data-id='3'>
           <view class='serie-left' >
             <view class='serie-count'>
@@ -98,7 +98,7 @@
           </view>
           <view class='history-right'>
             <view class='history-topic'>
-              <text class='topic-title'>乔布斯的魔力演讲</text>
+              <text class='topic-title'>{{item.title}}</text>
               <view class='history-free'>
                 <text>￥99</text>
               </view>
@@ -107,19 +107,20 @@
                 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
             </view>
             <view class='time-free'><text>限时免费</text></view>
-            <view class='history-info' catchtap='toPlayer' data-id="3">
+            <view class='history-info' >
               <text>共2节课 | 24分钟28秒</text>
-              
-              <!-- <view class='listen'> -->
-                <image src="../../images/index-play.png" class='history-play' ></image>
-                <!-- <text bindtap='addFollow' data-title='乔布斯的魔力演讲'>播放</text> -->
-              <!-- </view>  -->
+                <view class='{{index == currentIndex ? ".index-play-b" : "index-play" }}' data-it='{{item}}' 
+                  catchtap='playorpause' data-id='{{index}}'></view>
+                <!-- <image src="../../images/index-play.png" class='history-play' 
+                wx:if="{{playIndex==3 ? false : true}}" catchtap='play' data-id="3" ></image>
+                 <image src="../../images/follow-text.png" class='history-play' 
+                wx:if="{{playIndex==3 ? true : false}}" catchtap='pause' data-id="3" ></image> -->
             </view> 
           </view>
         </view>
       </view>
-      <view class='history-wrap'>
-        <view class='history-inner' bindtap='toCourse' data-id='4'>
+      <!-- <view class='history-wrap'>
+        <view class='history-inner'>
           <view class='serie-left'>
             <view class='serie-count'>
               <image class='count-icon' src="../../images/index-people.png"></image>
@@ -138,15 +139,18 @@
                 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
             </view>
             <view class='time-free'><text>限时免费</text></view>
-            <view class='history-info' catchtap='toPlayer' data-id="4">
+            <view class='history-info'>
               <text>共2节课 | 24分钟28秒</text>
-              <image src="../../images/index-play.png" class='history-play' ></image>
+              <image src="../../images/index-play.png" class='history-play' 
+                wx:if="{{playIndex==4 ? false : true}}" catchtap='play' data-id="4" ></image>
+                <image src="../../images/follow-text.png" class='history-play' 
+                wx:if="{{playIndex==4 ? true : false}}" catchtap='pause' data-id="4" ></image>
             </view> 
           </view>
         </view>
       </view>
       <view class='history-wrap'>
-        <view class='history-inner' bindtap='toCourse' data-id='5'>
+        <view class='history-inner'>
           <view class='serie-left'>
             <view class='serie-count'>
               <image class='count-icon' src="../../images/index-people.png"></image>
@@ -165,9 +169,12 @@
                 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在
             </view>
             <view class='time-free'><text>限时免费</text></view>
-            <view class='history-info' catchtap='toPlayer' data-id="5">
+            <view class='history-info'>
               <text>共2节课 | 24分钟28秒</text>
-              <image src="../../images/index-play.png" class='history-play' ></image>
+              <image src="../../images/index-play.png" class='history-play' 
+                wx:if="{{playIndex==5 ? false : true}}" catchtap='play' data-id="5" ></image>
+                <image src="../../images/follow-text.png" class='history-play' 
+                wx:if="{{playIndex==5 ? true : false}}" catchtap='pause' data-id="5" ></image>
             </view> 
           </view>
         </view>
@@ -194,11 +201,14 @@
             <view class='time-free'><text>限时免费</text></view>
             <view class='history-info' catchtap='toPlayer' data-id="6">
               <text>共2节课 | 24分钟28秒</text>
-              <image src="../../images/index-play.png" class='history-play' ></image>
+              <image src="../../images/index-play.png" class='history-play' 
+                wx:if="{{playIndex==6 ? false : true}}" catchtap='play' data-id="6" ></image>
+                <image src="../../images/follow-text.png" class='history-play' 
+                wx:if="{{playIndex==6 ? true : false}}" catchtap='pause' data-id="6" ></image>
             </view> 
           </view>
         </view>
-      </view>
+      </view> -->
     </scroll-view>
   </view>
   <include src="../component/player/player-component.wxml" />

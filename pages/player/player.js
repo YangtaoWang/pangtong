@@ -1,14 +1,13 @@
+
 // pages/player/player.js
 const util = require('../../utils/util'),
-      bgm = util.playerData.bgm;
-      // playbtnFlag = util.playerData.playbtnFlag;
+  bgm = util.playerData.bgm;
+      
 
 // 定义滑动的差值
 var y=0;
 Page({
-  /**
-   * 页
-   */
+  /*** 页*/
   data: {
     // 播放和暂停按钮标志
     controlShow: true,
@@ -50,7 +49,45 @@ Page({
     listCount:12,
     // 页面上下滑动了多少
     scroll:0,
-    checkHeight:309
+    checkHeight:309,
+    music: [{
+      postId: 0,
+      playing: 0,
+      title: "乔布斯的魔力演讲",
+      music: {
+        url: "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38",
+        title: "夜夜夜夜-齐秦",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 1,
+      playing: 0,
+      title: "有效管理你的健康",
+      music: {
+        url: "http://ws.stream.qqmusic.qq.com/C100003GdCmG4NkEOR.m4a?fromtag=38",
+        title: "鬼迷心窍-李宗盛",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000002xOmp62kqSic.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 2,
+      playing: 0,
+      title: "怎么健康活到40岁",
+      music: {
+        url: "http://ws.stream.qqmusic.qq.com/C100004HLusI2lLjZy.m4a?fromtag=38",
+        title: "女儿情-万晓利",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000004Wv5BO30pPc0.jpg?max_age=2592000"
+      }
+    }, {
+      postId: 3,
+      playing: 0,
+      title: "心理学：人的身体入侵大脑",
+      music: {
+        url: "http://ws.stream.qqmusic.qq.com/C100002mWVx72p8Ugp.m4a?fromtag=38",
+        title: "恋恋风尘-老狼",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
+    }],
+    isSlider: false
 
   },
   toText: function () {
@@ -59,21 +96,63 @@ Page({
     })
   },
   stop: function () {
-    util.pausebgm(bgm, this)
-   
+    // 暂停音乐
+    bgm.pause();
+    this.setData({
+      controlShow: false
+    })
   },
   // 播放音乐的方法
   play: function () {
+    bgm.play();
+    this.setData({
+      controlShow: true
+    })
 
-    util.playbgm(bgm, this)
-
-    
+    // var that = this;
     // wx.playBackgroundAudio({
     //   dataUrl: 'http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38',
     //   title: '鬼迷心窍'
     // });
-    // // 播放的同时更新数据
+    // 播放的同时更新数据
+    // bgm.onTimeUpdate(function () {
+    //     that.setData({
+    //       passed_str: that.formatTime(bgm.currentTime),
+    //       time_total_str: that.formatTime(bgm.duration),
+    //       poiLeft: ((bgm.currentTime / bgm.duration) )*265,
+    //       bar_width: ((bgm.currentTime / bgm.duration)) *265,
+    //       passed_dis: ((bgm.currentTime / bgm.duration)) * 265
+    //     });
+    //     // console.log(bgm.currentTime)
+    //     var per = (bgm.currentTime/bgm.duration).toFixed(2);
 
+    //     console.log(per);
+    //     if(per == 0.25&&that.data.sendFlag1){
+    //       console.log("发送0.25");
+    //       that.setData({
+    //         sendFlag1: false
+    //       })
+    //     }
+    //     if(per==0.50&&that.data.sendFlag2){
+    //       console.log("发送0.50")
+    //       that.setData({
+    //         sendFlag2: false
+    //       })
+    //     }
+    //     if (per == 0.75 &&that.data.sendFlag3){
+    //       console.log("发送0.75");
+    //       that.setData({
+    //         sendFlag3: false
+    //       })
+    //     }
+    //     if(per==1.00&& that.data.sendFlag4){
+    //       console.log("发送完成1.0");
+    //       that.setData({
+    //         sendFlag4: false
+    //       })
+    //     }
+           
+    // });
 
 
   },
@@ -89,7 +168,8 @@ Page({
         left: this.data.poiLeft,
         // 滑动前的进度条背景长度存起来
         bar: this.data.bar_width
-      }
+      },
+      isSlider:true
     })
     // console.log("startPos:" + e.touches[0].pageX)
   },
@@ -143,7 +223,8 @@ Page({
   ,
   mytouchend: function(){
     this.setData({
-      passed_end: this.data.touches.move + this.data.passed_end
+      passed_end: this.data.touches.move + this.data.passed_end,
+      isSlider: false
     })
     if(bgm.paused){
       bgm.play();
@@ -153,90 +234,129 @@ Page({
     }
     // 移动结束时用按钮移动位置加上之前的绝对定位也就是point，获取需要设置的时间
     var position = Math.floor((this.data.point) / 265 * bgm.duration);  
-   // console.log(position)
-    
+   // console.log(position)   
     bgm.seek(position);
-      
-
+    
   },
 
+  // 格式化时间
+  formatTime: function (seconds) {
+    return [
+      parseInt(seconds / 60 % 60),
+      parseInt(seconds % 60)
+    ]
+      .join(":")
+      .replace(/\b(\d)\b/g, "0$1");
+  }
+  ,
   /**
    * 生命周期函数--监听页面加载
    */
 
   onLoad: function (options) {
-    
+
+    console.log("playeronload")
     var that = this;
     
     wx.setNavigationBarTitle({
-      title: that.data.titleArr[options.id]
+      title: that.data.music[options.id].title
     });
-    // 首次进入
-    if (bgm.src !== "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38") {
-      
-      util.playbgm(bgm, that);
-      // 播放标记词played改为true,用于是否显示底部播放器弹窗
-      util.playerData.played = true;
-    }
-    // 方案1页面加载时，用util中数据调整本页面按钮的样式
     
+    // 页面加载时，判断是否播放状态修改按钮
+    //页面加载时，如果是暂停状态，用util中数据调整本页面按钮的样式
+    if (bgm.paused) {
       that.setData({
         passed_str: util.playerData.passed_str,
         bar_width: util.playerData.bar_width,
         poiLeft: util.playerData.poiLeft,
-        time_total_str: util.playerData.durationTime
-
+        controlShow: false
       })
-    
-    // if (util.playerData.played) {
-    //   that.setData({
-    //     passed_str: util.formatTime(bgm.currentTime),
-    //     time_total_str: util.formatTime(bgm.duration),
-    //     poiLeft: ((bgm.currentTime / bgm.duration)) * 265,
-    //     bar_width: ((bgm.currentTime / bgm.duration)) * 265
-    //   })
-    // }
-    
-
-
-    
-
-    util.isbgmPaused(bgm, this);
-    util.watchPause(bgm, this)
-    util.watchPlay(bgm, this)
-    // 监听音乐自然结束的事件
-    // util.watchEnd(bgm, this)
-   
-   
-      bgm.onEnded(function () {
-        that.setData({
-          controlShow: false
-        })
+    } else {
+      that.setData({
+        controlShow: true
       })
-    
-    
-    // 实时监听
-    util.onTime(bgm, this)
-    // 监听音乐手动停止的事件
-    bgm.onStop(function(){
-      console.log("stop")
-      // 修改是否手动关闭播放器标志
-      util.playerData.selfStop= true;
-      // 将之前同步到的播放器数据再次放到一个专用于再次播放的数据结构中
-      // util.playerData.stopData.dataUrl = util.playerData.dataUrl;
-      // util.playerData.stopData.currentTime = util.playerData.currentTime;
-      // util.playerData.stopData.duration = util.playerData.duration;
-      // console.log(util.playerData.stopData)
-      // 同时修改播放按钮标记
+    }
+    // 监听暂停事件
+    bgm.onPause(function(){
+      console.log("启动了暂定");
+      // 修改按钮指示数据
       that.setData({
         controlShow: false
       })
-      
+
     })
-    
+    // 监听播放事件
+    bgm.onPlay(function(){
+      console.log("启动了播放");
+      // 修改按钮指示数据
+      that.setData({
+        controlShow: true
+      })
+    })
+    bgm.onStop(function () {
+      console.log("启动了手动停止");
+      // 修改按钮指示数据
+      that.setData({
+        controlShow: false
+      })
+    })
+    bgm.onEnded(function(){
+      that.setData({
+        controlShow: false
+      })
+    })
 
 
-    
+    bgm.onTimeUpdate(function () {
+      if(!that.data.isSlider){
+        that.setData({
+          passed_str: that.formatTime(bgm.currentTime),
+          time_total_str: that.formatTime(bgm.duration),
+          poiLeft: ((bgm.currentTime / bgm.duration)) * 265,
+          bar_width: ((bgm.currentTime / bgm.duration)) * 265,
+          passed_dis: ((bgm.currentTime / bgm.duration)) * 265
+        });
+      }
+      
+      // console.log(bgm.currentTime)
+      // 埋点数据
+      var per = (bgm.currentTime / bgm.duration).toFixed(2);
+      console.log(per);
+      if (per == 0.25 && that.data.sendFlag1) {
+        console.log("发送0.25");
+        that.setData({
+          sendFlag1: false
+        })
+      }
+      if (per == 0.50 && that.data.sendFlag2) {
+        console.log("发送0.50")
+        that.setData({
+          sendFlag2: false
+        })
+      }
+      if (per == 0.75 && that.data.sendFlag3) {
+        console.log("发送0.75");
+        that.setData({
+          sendFlag3: false
+        })
+      }
+      if (per == 1.00 && that.data.sendFlag4) {
+        console.log("发送完成1.0");
+        that.setData({
+          sendFlag4: false
+        })
+      }
+
+      // 更新util中相对应的公共数据
+      util.playerData.passed_str = that.data.passed_str;
+      util.playerData.bar_width = that.data.bar_width;
+      util.playerData.poiLeft = that.data.poiLeft;
+
+    });
+
+    bgm.onError(function(errCode){
+      console.log(errCode)
+    })
     
    
   },
@@ -253,6 +373,7 @@ Page({
    */
   onShow: function () {
     console.log("playeronshow")
+    // 适配上滑到哪里fixed吸顶
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -263,10 +384,8 @@ Page({
         })
       }
     });
-    
 
-
-    
+   
   },
 
   /**
@@ -297,7 +416,7 @@ Page({
 
   },
   onPageScroll: function (e) {
-    console.log(e.scrollTop)
+    
     console.log(this.data.checkHeight)
     if(e.scrollTop> this.data.checkHeight){
       this.setData({
