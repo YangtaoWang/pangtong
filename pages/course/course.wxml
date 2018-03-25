@@ -28,11 +28,12 @@
     </view>
     <scroll-view class='courselist-wrap' style='height:{{height}}rpx' >
     <!--{{ down ? "height-active" : ""}}  -->
-      <view class='course-list'>
+      <view wx:for="{{music}}"wx:key data-id='{{item.postId}}' class='course-list {{index == currentIndex ? "forActive" : ""}}' bindtap='clickPlay'>
         <view class='list-wrap'>
-          <image class='control-btn' src='../../images/course-control.png'></image>
+          <!-- <image class='control-btn' src='../../images/course-control.png'></image> -->
+          <view class='{{index == currentIndex ? ".control-btn-stop" : "control-btn" }}'></view>
           <view class='list-inner'>
-              <text class='inner-title'>1.摆正阅读的3个心态</text>
+              <text class='inner-title'>{{item.postId}}.{{item.title}}</text>
               <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
@@ -44,7 +45,7 @@
           <image class='list-text' src="../../images/course-listtext.png" catchtap='toText'></image>
         </view>
       </view>
-      <view class='course-list'>
+      <!-- <view class='course-list'>
         <view class='list-wrap'>
           <image class='control-btn' src='../../images/course-control.png'></image>
           <view class='list-inner'>
@@ -155,9 +156,11 @@
           </view>
           <image class='list-text' src="../../images/course-listtext.png"></image>
         </view>
-      </view>
+      </view> -->
     </scroll-view>
-    <view class='course-loadmore' bindtap='open'><image class='downopen {{ !heightFlag ? "trans" : ""}}' src="../../images/course-down.png"></image></view>
+    <view class='course-loadmore' bindtap='open'>
+        <image class='downopen {{ !heightFlag ? "trans" : ""}}' src="../../images/course-down.png"></image>
+      </view>  
   </view>
   <view class='gray-line'>
   </view>

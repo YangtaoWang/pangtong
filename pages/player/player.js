@@ -55,6 +55,7 @@ Page({
       playing: false,
       title: "乔布斯的魔力演讲",
       music: {
+        currentTime:0,
         url: "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38",
         title: "夜夜夜夜-齐秦",
         coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000"
@@ -92,7 +93,37 @@ Page({
     }, {
       postId: 4,
       playing: false,
-      title: "广播电视基础课程",
+      title: "广播电视基础课程1",
+      music: {
+        currentTime: 0,
+        url: "http://image.kaolafm.net/mz/audios/201803/e87b841f-6483-458d-9c37-204a61b5271b.mp3",
+        title: "无怨无悔",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
+    }, {
+      postId: 5,
+      playing: false,
+      title: "广播电视基础课程2",
+      music: {
+        currentTime: 0,
+        url: "http://image.kaolafm.net/mz/audios/201803/739aee86-5e9d-4755-a439-9400aa1cedaa.mp3",
+        title: "无怨无悔",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
+    }, {
+      postId: 6,
+      playing: false,
+      title: "广播电视基础课程3",
+      music: {
+        currentTime: 0,
+        url: "http://image.kaolafm.net/mz/audios/201803/ab8e5f95-7a7c-4205-bd40-92ac9ad24050.mp3",
+        title: "无怨无悔",
+        coverImg: "http://y.gtimg.cn/music/photo_new/T002R150x150M000001VaXQX1Z1Imq.jpg?max_age=2592000",
+      }
+    }, {
+      postId: 7,
+      playing: false,
+      title: "广播电视基础课程4",
       music: {
         currentTime: 0,
         url: "http://image.kaolafm.net/mz/audios/201803/e87b841f-6483-458d-9c37-204a61b5271b.mp3",
@@ -102,7 +133,7 @@ Page({
     }],
     isSlider: false,
     // 循环遍历时，变背景色的标记
-    forIndex: 0,
+    currentIndex: 0,
     // 储存播放时的下标
     _currentIndex:0,
     // 是否触发过关闭
@@ -111,16 +142,18 @@ Page({
   },
   clickPlay: function(e){
     var id = e.currentTarget.dataset.id;
-    console.log(typeof id)
+    
     if(bgm.src !== this.data.music[id].music.url){
       bgm.src = this.data.music[id].music.url;
       bgm.startTime = this.data.music[id].music.currentTime;
       bgm.title = this.data.music[id].music.title;
+      // 存储音乐的title,返回其他页面时，同步标题
       util.playerData.conTitle = this.data.music[id].title;
+      // 用于判断播放id,进入本页面时，标红显示
       util.playerData.playingId = id;
 
       this.setData({
-        forIndex: id,
+        currentIndex: id,
         _currentIndex:id
       })
     }
@@ -149,7 +182,7 @@ Page({
       setTimeout(() => {
         bgm.src = this.data.music[index].music.url;
         bgm.startTime = this.data.music[index].music.currentTime;
-        bgm.title = this.data.music[index].music.title;
+        bgm.title = this.data.music[index].title;
         util.playerData.conTitle = this.data.music[index].title;
         util.playerData.playingId = index;
 
@@ -157,11 +190,10 @@ Page({
 
     }
 
-
   },
   next: function(){
     var index = this.data._currentIndex;
-    if(index <= this.data.music.length-2){
+    if(index < this.data.music.length - 1){
       bgm.src = this.data.music[index + 1].music.url;
       bgm.startTime = this.data.music[index + 1].music.currentTime;
       bgm.title = this.data.music[index+1].music.title;
@@ -170,7 +202,7 @@ Page({
 
       this.setData({
         _currentIndex: index + 1,
-        forIndex: index + 1
+        currentIndex: index + 1
       })
     }
     
@@ -187,7 +219,7 @@ Page({
 
       this.setData({
         _currentIndex: index - 1,
-        forIndex: index-1
+        currentIndex: index-1
       })
     }
   },
@@ -293,7 +325,7 @@ Page({
     var index = util.playerData.playingId;
     util.playerData.conTitle = this.data.music[index].title;
     this.setData({
-      forIndex: index,
+      currentIndex: index,
       _currentIndex: index
     })
     
@@ -352,7 +384,7 @@ Page({
         bgm.title = this.data.music[index + 1].music.title;
         this.setData({
           _currentIndex: index + 1,
-          forIndex: index + 1
+          currentIndex: index + 1
         })
       }
 
@@ -369,6 +401,7 @@ Page({
       })
 
     })
+    
 
 
     bgm.onTimeUpdate(function () {
@@ -421,7 +454,46 @@ Page({
       util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
 
     });
+ 
 
+    bgm.onPrev(()=> {
+      var index = this.data._currentIndex;
+      if (index > 0) {
+        bgm.src = this.data.music[index - 1].music.url;
+        bgm.startTime = this.data.music[index - 1].music.currentTime;
+        bgm.title = this.data.music[index - 1].music.title;
+        util.playerData.conTitle = this.data.music[index - 1].title;
+        util.playerData.playingId = index - 1;
+
+        this.setData({
+          _currentIndex: index - 1,
+          currentIndex: index - 1
+        })
+      }
+      
+    })
+
+
+
+    bgm.onNext(()=>{
+
+      var index = this.data._currentIndex;
+      if (index <  this.data.music.length - 1) {
+        bgm.src = this.data.music[index + 1].music.url;
+        bgm.startTime = this.data.music[index + 1].music.currentTime;
+        bgm.title = this.data.music[index + 1].music.title;
+        util.playerData.conTitle = this.data.music[index + 1].title;
+        util.playerData.playingId = index + 1;
+
+        this.setData({
+          _currentIndex: index + 1,
+          currentIndex: index + 1
+        })
+      }   
+
+    })
+
+   
     bgm.onError(function(errCode){
       console.log(errCode)
     })

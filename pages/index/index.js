@@ -99,7 +99,8 @@ Page({
       setTimeout(()=>{
         bgm.src = this.data.music[index].music.url;
         bgm.startTime = this.data.music[index].music.currentTime;
-        bgm.title = this.data.music[index].music.title;
+        bgm.title = this.data.music[index].title;
+        util.playerData.conTitle = this.data.music[id].title;
         
       },300)
       
@@ -130,11 +131,12 @@ Page({
       
       bgm.startTime= this.data.music[id].music.currentTime;
       bgm.src = this.data.music[id].music.url;
-      bgm.title = this.data.music[id].music.title;
+      bgm.title = this.data.music[id].title;
+      util.playerData.conTitle = this.data.music[id].title;
 
       // 全局开启播放器出现的标记
       util.playerData.played = true;
-      console.log(bgm.title)
+      
 
 
       this.setData({
@@ -145,7 +147,7 @@ Page({
         coursetitle: this.data.music[id].title
       })
       // util.playerData.conTitle = this.coursetitle;
-      console.log(this.data.music[id].playing)
+      // console.log(this.data.music[id].playing)
 
     } else { 
       // 播放状态时,判断是否点击是自己
@@ -163,7 +165,8 @@ Page({
         // 如果点击的是其他按钮
         bgm.src = this.data.music[id].music.url;
         bgm.startTime = this.data.music[id].music.currentTime;
-        bgm.title = this.data.music[id].music.title;
+        bgm.title = this.data.music[id].title;
+        util.playerData.conTitle = this.data.music[id].title;
         // util.playerData.conTitle = this.coursetitle;
         this.setData({
           [playing]: true,
@@ -244,7 +247,7 @@ Page({
     var that = this;
     var currentIndex = that.data._currentIndex;
     // 页面加载时，判断然后修改播放状态按钮
-    if(bgm.paused){
+    if(bgm.src === "" || bgm.paused){
       // 返回时是暂停
       that.setData({
         controlShow: false,
@@ -254,7 +257,7 @@ Page({
       })
     }else{
       // var currentIndex = this.data._currentIndex;
-      console.log("走了显示")
+      // console.log("走了显示")
       that.setData({
         controlShow: true,
         currentIndex: currentIndex,
@@ -262,10 +265,7 @@ Page({
       
       })
     }
-    // that.setData({
-    //   courseTitle: util.playerData.conTitle,
-    //   duration: util.playerData.conDuration
-    // })
+    
 
     // 监听暂停事件
     bgm.onPause(function () {
@@ -287,6 +287,8 @@ Page({
         currentIndex: that.data._currentIndex
       })
     })
+
+    
     // 监听更新事件
     bgm.onTimeUpdate(function () {
       console.log("启动了更新");

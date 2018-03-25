@@ -17,13 +17,15 @@
       <text class='list-name'>课程列表</text>
       <text class='list-count'>（共8节）</text>
     </view>
-    <view class='course-pre' wx:for="{{music}}" wx:key data-id='{{item.postId}}' class='{{forIndex===item.postId ? "forActive" : ""}}' catchtap='clickPlay'>
+    <view>
+    <view  wx:for="{{music}}" wx:key data-id='{{item.postId}}' class=' course-pre {{currentIndex === item.postId ? "forActive" : ""}}' bindtap='clickPlay'>
       <text class='pre-top' >{{item.postId}}.{{item.title}}</text>
       <view class='pre-bottom'>
         <text class='finished'>已完成</text>
         <text class='duration'>07:38/</text>
         <text class='learncount'>56477次学习</text>
       </view>
+    </view>
     </view>
   </view>
   <view class='bottompart'>

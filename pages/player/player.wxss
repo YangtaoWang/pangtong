@@ -150,6 +150,7 @@
 .controls-next{
   margin-right: 165rpx;
 }
+/*点击变红色  */
 .forActive{
   color: red;
 }  
