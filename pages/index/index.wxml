@@ -87,8 +87,8 @@
       <text>历史系列课</text>
     </view>
     <scroll-view>
-      <view class='history-wrap' wx:for="{{music}}" wx:key>
-        <view class='history-inner' bindtap='toCourse' data-id='3'>
+      <view class='history-wrap' wx:for="{{music}}" wx:key bindtap='toCourse' data-id='{{index+3}}'>
+        <view class='history-inner'>
           <view class='serie-left' >
             <view class='serie-count'>
               <image class='count-icon' src="../../images/index-people.png"></image>

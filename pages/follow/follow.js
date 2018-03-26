@@ -12,7 +12,55 @@ Page({
     scroll: 0,
     followItem: [],
     showFlag: true,
-    titleArr: [{ title: "怎么健康活到100岁", show: 1, id: 0 }, { title: "怎么健康活到101岁", show: 1, id: 1}, { title: "怎么健康活到102岁", show: 1, id:2 }, { title: "乔布斯马丽丽演讲", show: 1, id:3 }, { title: "有效管理你的健康", show: 1, id:4 }, { title: '怎么健康活到104岁', show: 1, id:5 }, { title: '心理学： 人的身体入侵了大脑', show: 1, id:6 }],
+    titleArr: [{
+      title: "怎么健康活到100岁", 
+      show: 1, 
+      id: 0, 
+      currentTime: 0,
+      url: "http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38"
+      }, 
+      { 
+      title: "怎么健康活到101岁", 
+      show: 1, 
+      id: 1,
+      currentTime: 0,
+      url: "http://od.open.qingting.fm/vod/00/00/0000000000000000000025922518_64.m4a"
+      }, 
+      { 
+      title: "怎么健康活到102岁", 
+      show: 1, 
+      id:2,
+      currentTime: 0,
+      url: "http://ws.stream.qqmusic.qq.com/C100004HLusI2lLjZy.m4a?fromtag=38"
+      }, 
+      { 
+      title: "乔布斯马丽丽演讲", 
+      show: 1, 
+      id:3,
+      currentTime: 0,
+      url: "http://ws.stream.qqmusic.qq.com/C100002mWVx72p8Ugp.m4a?fromtag=38" 
+      }, 
+      {  
+      title: "有效管理你的健康", 
+      show: 1, 
+      id:4,
+      currentTime: 0,
+      url: "http://image.kaolafm.net/mz/audios/201803/e87b841f-6483-458d-9c37-204a61b5271b.mp3" 
+      }, 
+      { 
+      title: '怎么健康活到104岁', 
+      show: 1, 
+      id:5,
+      currentTime: 0,
+      url: "http://image.kaolafm.net/mz/audios/201803/739aee86-5e9d-4755-a439-9400aa1cedaa.mp3" 
+      },
+      { 
+      title: '心理学： 人的身体入侵了大脑', 
+      show: 1, 
+      id:6,
+      currentTime: 0,
+      url: "http://image.kaolafm.net/mz/audios/201803/ab8e5f95-7a7c-4205-bd40-92ac9ad24050.mp3" 
+      }],
     // 控制弹框是否显示
     isShow: false,
     // 控制弹窗上面的按钮改变
@@ -28,7 +76,7 @@ Page({
    */
   onLoad: function (options) {
     
-    console.log("followonload")
+    console.log("follow-onload")
   },
   toCourse: function (e) {
     wx.navigateTo({
@@ -122,14 +170,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("followonready")
+    console.log("follow-onready")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("followonshow")
+    console.log("follow-onshow")
     value = wx.getStorageSync('followed');
     console.log(value)
     if (value.length != 0) {
@@ -201,6 +249,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    console.log("follow-onhide")
     if (value.length == 0) {
       this.setData({
         showFlag: true
@@ -217,7 +266,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    console.log("follow-onUnlaod")
   },
 
   /**

@@ -161,7 +161,7 @@ Page({
   },
   toText: function () {
     wx.navigateTo({
-      url: '../../images/text/text'
+      url: '../../pages/text/text'
     })
   },
   stop: function () {

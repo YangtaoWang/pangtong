@@ -28,7 +28,7 @@
     </view>
     <scroll-view class='courselist-wrap' style='height:{{height}}rpx' >
     <!--{{ down ? "height-active" : ""}}  -->
-      <view wx:for="{{music}}"wx:key data-id='{{item.postId}}' class='course-list {{index == currentIndex ? "forActive" : ""}}' bindtap='clickPlay'>
+      <view wx:for="{{music}}" wx:key data-id='{{item.postId}}' class='course-list {{index == currentIndex ? "forActive" : ""}}' bindtap='clickPlay'>
         <view class='list-wrap'>
           <!-- <image class='control-btn' src='../../images/course-control.png'></image> -->
           <view class='{{index == currentIndex ? ".control-btn-stop" : "control-btn" }}'></view>
@@ -37,7 +37,7 @@
               <view class='count-wrap'>
                 <image class='coursr-count' src="../../images/course-count.png"></image>
                 <text class='count-text'>5772</text>
-                <image class='course-time' src="../../images/course-count.png"></image>
+                <image class='course-time' src="../../images/course-time.png"></image>
                 <text  class='time-text'>07:38</text>
                 <text class='course-finish'>已听完</text>
               </view>
@@ -175,7 +175,7 @@
     </view>
   </view>
   <view class='course-bottom'>
-    <view class='free-left' bindtap='toPlayer' data-id="{{courseId}}">
+    <view class='free-left'>
       <image class='free-try' src='../../images/course-try.png'></image>
       <text>免费试听</text>
     </view>

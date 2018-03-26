@@ -1,5 +1,6 @@
 <!--pages/text/text.wxml-->
 <view class='bodywrap'>
+<view class='gray-longline'></view>
   <view class='text-inner'>
     <text class='text-title'>
       如何打造顶级产品体验如何打造顶级产品体验

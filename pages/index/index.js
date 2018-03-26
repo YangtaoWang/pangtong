@@ -227,6 +227,7 @@ Page({
         showErrorComponent: false
       })
     }, 1000)
+    console.log("index-onload")
   
   },
 
@@ -234,14 +235,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("index-onready")
   },
   
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    console.log("index-onShow")
     // *******方案一*******
     // 进入时获取上一次点击播放的id，
     var that = this;
@@ -340,14 +341,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("index-onHide")
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("index-onunload")
   },
 
   /**
@@ -375,6 +376,16 @@ Page({
       title: '尚德-知识变相',
       desc: '最具人气的小程序学习平台!'
     }
+  },
+  onPullDownRefresh: function(){
+    // wx.showNavigationBarLoading() //在标题栏中显示加载
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
+    setTimeout(function(){
+      // wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    },1500)
   }
 })
 

@@ -23,8 +23,10 @@
         <text class='cart-title'>{{item.title}}</text>
         <view class='cart-text'> 学会演讲机会翻倍，不会演讲严重吃亏。乔布斯是全世界最擅长虏获人心的演讲者，他的天才难以复制，但是现在你可以向他偷师，获得演讲的魔法！现在</view>
         <view class='cart-buttons'>
-            <image class='text-icon'src="../../images/follow-text.png" catchtap='toText'></image>
-            <image class='play-icon'src="../../images/follow-play.png" catchtap='toPlayer' data-id="{{item}}"></image>
+          <!-- <view class='{{index == currentIndex ? ".index-play-b" : "index-play" }}' data-it='{{item}}' 
+                  catchtap='playorpause' data-id='{{item.postId}}'></view> -->
+          <image class='text-icon'src="../../images/follow-text.png" catchtap='toText'></image>
+            <image class='play-icon'src="../../images/follow-play.png" catchtap='toPlayer' data-id="{{item}}"></image> 
            
         </view>
       </view>

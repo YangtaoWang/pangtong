@@ -114,11 +114,12 @@ Page({
     }],
     coursetitle: "",
     // currentIndex用于判断变背景
-    currentIndex: 0,
+    currentIndex: -1,
     // 储存播放时的下标
-    _currentIndex: 0,
+    _currentIndex: -1,
     // 是否触发过关闭
-    isStoped: false
+    isStoped: false,
+    playedStatus: -1
   },
   // 展开课程列表高度
   open: function (){
@@ -145,14 +146,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("course-onload")
     var that = this;
     // console.log(options.id)
     wx.setNavigationBarTitle({
       title: that.data.titleArr[options.id]
     });
+
     that.setData({
       courseId: options.id
     });
+
     var that = this;
     // 将播放器的played标志，赋值给isShow，用于是否能显示弹窗
     this.setData({
@@ -216,8 +220,8 @@ Page({
 
 
       util.playerData.passed_str = util.formatTime(bgm.currentTime),
-        util.playerData.time_total_str = util.formatTime(bgm.duration),
-        util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
+      util.playerData.time_total_str = util.formatTime(bgm.duration),
+      util.playerData.poiLeft = ((bgm.currentTime / bgm.duration)) * 265
 
 
     })
@@ -344,7 +348,7 @@ Page({
         bgm.src = this.data.music[index].music.url;
         bgm.startTime = this.data.music[index].music.currentTime;
         bgm.title = this.data.music[index].title;
-        util.playerData.conTitle = this.data.music[id].title;
+        util.playerData.conTitle = this.data.music[index].title;
 
       }, 300)
 
@@ -411,14 +415,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    console.log("course-onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    console.log("course-onShow")
    
   },
 
@@ -426,14 +430,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log("course页面隐藏")
+    console.log("course-onHide")
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    console.log("course-onUnload")
   },
 
   /**
